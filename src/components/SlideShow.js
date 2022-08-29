@@ -59,7 +59,6 @@ function SlideShow({ praise }) {
     return (
         <div ref={slideFocusRef} tabIndex={-1} onKeyDown={handleKeyDown} className="slide_show">
             <h1>{title}</h1>
-
             <section className="content">
                 {
                     verse.map(v => (
@@ -71,8 +70,6 @@ function SlideShow({ praise }) {
                     ))
                 }
             </section>
-
-
         </div>
     );
 }

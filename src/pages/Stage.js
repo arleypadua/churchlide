@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import SlideShow from '../components/SlideShow'
+import SlideShowEmptyState from '../components/SlideShowEmptyState'
 import collections from '../data/collections'
 import { cleanupListener, NAVIGATE_ACTION, onMessage } from '../pubsub/eventPublisher'
 
@@ -30,7 +31,11 @@ export default function PraiseSlideShow() {
 
   return (
     <>
-      {praise && <SlideShow praise={praise} />}
+      {
+        praise 
+          ? <SlideShow praise={praise} />
+          : <SlideShowEmptyState />
+      }
     </>
   )
 }
