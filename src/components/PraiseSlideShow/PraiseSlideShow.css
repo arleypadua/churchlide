@@ -1,0 +1,68 @@
+.slide_show {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide_show h1 {
+  font-size: 2vw;
+}
+
+.slide_show .content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide_show:focus {
+  outline: none;
+}
+
+.slide_verse {
+  font-size: 2vw;
+  line-height: 5vw;
+
+  height: 100%;
+  
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  animation: fadeIn 1.5s;
+}
+
+.slide_verse_hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.chave-bis-small {
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 40px;
+  border-right: 1.5px solid yellow;
+  border-radius: 15px;
+}
+
+.chave-bis-small::after {
+  content: "bis";
+  position: absolute;
+  left: calc(100% + 30px);
+  top: calc(43%);
+
+  font-style: italic;
+  font-size: 2.5vw;
+  color: yellow;
+}
+
+blockquote.chave-bis-small {
+  margin: 0px 0px;
+}

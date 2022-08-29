@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import SlideShow from '../components/SlideShow'
-import SlideShowEmptyState from '../components/SlideShowEmptyState'
+import PraiseSlideShow from '../components/PraiseSlideShow/PraiseSlideShow'
+import SlideShowEmptyState from '../components/PraiseSlideShow/SlideShowEmptyState'
 import collections from '../data/collections'
 import { cleanupListener, NAVIGATE_ACTION, onMessage } from '../pubsub/eventPublisher'
 
-export default function PraiseSlideShow() {
+export default function Stage() {
   const navigate = useNavigate()
   const { collectionName, praiseName } = useParams()
   const [praise, setPraise] = useState(undefined)
@@ -33,7 +33,7 @@ export default function PraiseSlideShow() {
     <>
       {
         praise 
-          ? <SlideShow praise={praise} />
+          ? <PraiseSlideShow praise={praise} />
           : <SlideShowEmptyState />
       }
     </>

@@ -1,20 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { onMessage, cleanupListener, NEXT_ACTION, PREVIOUS_ACTION } from '../pubsub/eventPublisher';
+import buildVerseFromContent from "../../helpers/buildVerseFromContent";
+import { onMessage, cleanupListener, NEXT_ACTION, PREVIOUS_ACTION } from '../../pubsub/eventPublisher';
+import './PraiseSlideShow.css'
 
-function buildVerseFrom(content) {
-    const verse = content.split('\n\n')
-    return verse.map((v, index) => ({
-        page: index,
-        lines: v.replace(/(?:\r\n|\r|\n)/g, '<br />'),
-    }))
-}
-
-function SlideShow({ praise }) {
+function PraiseSlideShow({ praise }) {
     const { title, content } = praise;
 
     const [currentPage, setCurrentPage] = useState(0)
     const slideFocusRef = useRef(null)
-    const verse = buildVerseFrom(content)
+    const verse = buildVerseFromContent(content)
 
     function previousSlide() {
         if (currentPage === 0) return
@@ -48,6 +42,10 @@ function SlideShow({ praise }) {
         return () => cleanupListener(handleMessage)
     }, [currentPage])
 
+    useEffect(() => {
+      setCurrentPage(0)
+    }, [title, content])
+
     const handleKeyDown = (e) => {
         if (e.key === 'ArrowLeft') {
             previousSlide()
@@ -74,4 +72,4 @@ function SlideShow({ praise }) {
     );
 }
 
-export default SlideShow
+export default PraiseSlideShow

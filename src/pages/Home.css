@@ -1,0 +1,17 @@
+.home__content {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.home__content .praise-search {
+  flex-grow: 1;
+}
+
+.home__content .praise-list {
+  flex-grow: 1;
+}
+
+.home__content .current-praise {
+  flex-grow: 2;
+}

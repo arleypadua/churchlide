@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import collections from '../data/collections'
-import { NAVIGATE_ACTION, publishMessage } from '../pubsub/eventPublisher'
+import collections from '../../data/collections'
+import { NAVIGATE_ACTION, publishMessage } from '../../pubsub/eventPublisher'
 
 export default function PraiseList() {
   const [searchText, setSearchText] = useState('')
@@ -29,6 +29,7 @@ export default function PraiseList() {
         <input
           type="text"
           name="searchText"
+          placeholder='Nome do Louvor'
           value={searchText}
           onChange={handleSearchTextChange}
         />

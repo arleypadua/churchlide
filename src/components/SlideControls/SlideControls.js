@@ -1,5 +1,5 @@
 import React from 'react'
-import { NEXT_ACTION, PREVIOUS_ACTION, publishMessage } from '../pubsub/eventPublisher'
+import { NEXT_ACTION, PREVIOUS_ACTION, publishMessage } from '../../pubsub/eventPublisher'
 
 export default function SlideControls() {
   const handlePrevious = () => {
