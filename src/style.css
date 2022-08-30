@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+
 html {
     box-sizing: border-box;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgb(3, 0, 64) 0%, rgba(12,12,163,1) 29%, rgba(8,34,51,1) 100%);
-    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #f7f7f7;
+  color: #023047;
 }
 
 *,
@@ -11,6 +16,23 @@ html {
     box-sizing: inherit;
 }
 
+.presentation_theme {
+  background: linear-gradient(90deg, rgb(3, 0, 64) 0%, rgba(12,12,163,1) 29%, rgba(8,34,51,1) 100%);
+  color: white;
+}
+
 .hide_overflow {
-    overflow: hidden;
+  overflow: hidden;
+}
+
+.input {
+  padding: 5px;
+  height: 35px;
+  border-radius: 5px;
+  border: #023047 solid 1px;
+  transition: border ease-in-out 0.5s;
+}
+
+.input_full_width {
+  width: 100%;
 }

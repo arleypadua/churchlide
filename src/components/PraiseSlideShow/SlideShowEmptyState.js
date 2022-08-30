@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
+import togglePresentationTheme from '../../helpers/togglePresentationTheme'
 
 export default function SlideShowEmptyState() {
   useEffect(() => {
-    document.body.classList.add('hide_overflow')
+    togglePresentationTheme()
   }, [])
 
   return (

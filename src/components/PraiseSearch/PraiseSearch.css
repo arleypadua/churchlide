@@ -1,0 +1,30 @@
+div.praise_search > section > h1 {
+  font-size: 1.5em;
+  text-align: center;
+  border-bottom: 1px dotted rgba(2, 48, 71, 0.3);
+}
+
+.praise_search__praise_entry {
+  cursor: pointer;
+  list-style-type: none;
+  padding: 2px 5px;
+  margin: 10px 5px;
+  background-color: #e1ebee;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(2, 48, 71, 0.1), 0 6px 20px 0 rgba(2, 48, 71, 0.09);
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.praise_search__praise_entry:hover {
+  background-color: #d4e6ec;
+  box-shadow: 0 4px 8px 0 rgba(2, 48, 71, 0.25), 0 6px 20px 0 rgba(2, 48, 71, 0.22);
+}
+
+.praise_search__praise_entry h1 {
+  font-size: 0.8em;
+}
+
+.praise_search__praise_entry p {
+  font-size: 0.65em;
+  text-align: justify;
+}

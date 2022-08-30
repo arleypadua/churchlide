@@ -19,8 +19,8 @@ export default function Stage() {
 
   useEffect(() => {
     const praise = collections
-      .find(c => c.name === collectionName)?.songs
-      .find(s => s.title === praiseName)
+      .find(c => c.name.includes(collectionName))?.songs
+      .find(s => s.title.includes(praiseName))
 
     setPraise(praise)
 

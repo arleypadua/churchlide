@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import buildVerseFromContent from "../../helpers/buildVerseFromContent";
+import togglePresentationTheme from '../../helpers/togglePresentationTheme'
 import { onMessage, cleanupListener, NEXT_ACTION, PREVIOUS_ACTION } from '../../pubsub/eventPublisher';
 import './PraiseSlideShow.css'
 
@@ -32,7 +33,7 @@ function PraiseSlideShow({ praise }) {
     }
 
     useEffect(() => {
-        document.body.classList.add('hide_overflow')
+      togglePresentationTheme()
     }, [])
 
     useEffect(() => {

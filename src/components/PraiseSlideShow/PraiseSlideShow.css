@@ -43,7 +43,19 @@
   to { opacity: 1; }
 }
 
-.chave-bis-small {
+.chave-bis, 
+.chave-bis-small,
+.chave-bis-no-final,
+.chave-2x,
+.chave-3x,
+.chave-4x,
+.chave-5x,
+.chave-6x,
+.chave-2x-small,
+.chave-3x-small,
+.chave-4x-small,
+.chave-5x-small,
+.chave-6x-small {
   position: relative;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -52,6 +64,7 @@
   border-radius: 15px;
 }
 
+.chave-bis::after, 
 .chave-bis-small::after {
   content: "bis";
   position: absolute;
@@ -63,6 +76,84 @@
   color: yellow;
 }
 
-blockquote.chave-bis-small {
+.chave-bis-no-final::after {
+  content: "bis no final";
+  position: absolute;
+  left: calc(100% + 30px);
+  top: calc(43%);
+
+  font-style: italic;
+  font-size: 2.5vw;
+  color: yellow;
+}
+
+.chave-2x::after, .chave-2x-small::after {
+  content: "2x";
+  position: absolute;
+  left: calc(100% + 30px);
+  top: calc(43%);
+
+  font-style: italic;
+  font-size: 2.5vw;
+  color: yellow;
+}
+
+.chave-3x::after, .chave-3x-small::after {
+  content: "3x";
+  position: absolute;
+  left: calc(100% + 30px);
+  top: calc(43%);
+
+  font-style: italic;
+  font-size: 2.5vw;
+  color: yellow;
+}
+
+.chave-4x::after, .chave-4x-small::after {
+  content: "4x";
+  position: absolute;
+  left: calc(100% + 30px);
+  top: calc(43%);
+
+  font-style: italic;
+  font-size: 2.5vw;
+  color: yellow;
+}
+
+.chave-5x::after, .chave-5x-small::after {
+  content: "5x";
+  position: absolute;
+  left: calc(100% + 30px);
+  top: calc(43%);
+
+  font-style: italic;
+  font-size: 2.5vw;
+  color: yellow;
+}
+
+.chave-6x::after, .chave-6x-small::after {
+  content: "6x";
+  position: absolute;
+  left: calc(100% + 30px);
+  top: calc(43%);
+
+  font-style: italic;
+  font-size: 2.5vw;
+  color: yellow;
+}
+
+blockquote.chave-bis, 
+blockquote.chave-bis-small,
+blockquote.chave-bis-no-final,
+blockquote.chave-2x,
+blockquote.chave-3x,
+blockquote.chave-4x,
+blockquote.chave-5x,
+blockquote.chave-6x,
+blockquote.chave-2x-small,
+blockquote.chave-3x-small,
+blockquote.chave-4x-small,
+blockquote.chave-5x-small,
+blockquote.chave-6x-small {
   margin: 0px 0px;
 }

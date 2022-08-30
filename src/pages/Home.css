@@ -4,12 +4,21 @@
   justify-content: space-between;
 }
 
+.home__content div {
+  padding: 5px;
+}
+
 .home__content .praise-search {
   flex-grow: 1;
+  max-width: 20vw;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .home__content .praise-list {
   flex-grow: 1;
+  max-width: 20vw;
+  height: 100%;
 }
 
 .home__content .current-praise {

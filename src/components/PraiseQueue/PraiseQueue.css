@@ -1,0 +1,32 @@
+.praise_queue__praise_entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
+  list-style-type: none;
+  padding: 2px 5px;
+  margin: 10px 5px;
+  background-color: #e1ebee;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(2, 48, 71, 0.1), 0 6px 20px 0 rgba(2, 48, 71, 0.09);
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.praise_queue__praise_entry:hover {
+  background-color: #d4e6ec;
+  box-shadow: 0 4px 8px 0 rgba(2, 48, 71, 0.25), 0 6px 20px 0 rgba(2, 48, 71, 0.22);
+}
+
+.praise_queue__praise_entry h1 {
+  font-size: 0.8em;
+}
+
+.praise_queue__praise_entry i {
+  padding: 3px;
+  visibility: hidden;
+}
+
+.praise_queue__praise_entry:hover i {
+  visibility: visible;
+}
