@@ -2,7 +2,7 @@ import React from 'react'
 import { NAVIGATE_ACTION, publishMessage } from '../../pubsub/eventPublisher'
 import { usePraiseQueueContext } from './PraiseQueueContext'
 import './PraiseQueue.css'
-import { removePraiseFromQueue } from './reducer'
+import { removePraiseFromQueue, selectPraise } from './reducer'
 
 function PraiseQueueEntry({ name, title, handlePraiseClick, handlePraiseDeleteClick }) {
   return (
@@ -21,6 +21,8 @@ export default function PraiseQueue() {
   const handlePraiseClick = (collection, praiseTitle) => {
     const praiseUrl = `/stage/praise/${collection}/${praiseTitle}`
     publishMessage(NAVIGATE_ACTION, praiseUrl)
+    
+    dispatchPraiseQueue(selectPraise(collection, praiseTitle))
   }
 
   const handlePraiseDeleteClick = (collection, praiseTitle) => {
@@ -33,6 +35,7 @@ export default function PraiseQueue() {
         praiseQueue.praiseQueue.map(p => {
           return (
             <PraiseQueueEntry 
+              key={`${p.collection}|${p.praise.title}`}
               name={p.collection}
               title={p.praise.title}
               handlePraiseClick={handlePraiseClick}

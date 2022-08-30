@@ -1,4 +1,5 @@
 import React, { useReducer } from "react"
+import CurrentPraise from "../components/CurrentPraise/CurrentPraise"
 import PraiseQueue from "../components/PraiseQueue/PraiseQueue"
 import PraiseQueueContext from "../components/PraiseQueue/PraiseQueueContext"
 import { praiseQueueInitialState, praiseQueueReducer } from "../components/PraiseQueue/reducer"
@@ -18,7 +19,10 @@ export default function Home() {
       <main className="home__content">
         <div className="praise-search"><PraiseSearch /></div>
         <div className="praise-list"><PraiseQueue /></div>
-        <div className="current-praise"><SlideControls /></div>
+        <div className="current-praise">
+          <SlideControls />
+          <CurrentPraise />
+        </div>
       </main>
     </PraiseQueueContext.Provider>
   )

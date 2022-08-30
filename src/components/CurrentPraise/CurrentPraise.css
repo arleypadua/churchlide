@@ -1,0 +1,4 @@
+.current_praise__page {
+  display: flex;
+  flex-direction: column;
+}
