@@ -1,5 +1,5 @@
 import React from 'react'
-import { NEXT_ACTION, PREVIOUS_ACTION, publishMessage } from '../../pubsub/eventPublisher'
+import { NEXT_ACTION, PREVIOUS_ACTION, NAVIGATE_ACTION, publishMessage } from '../../pubsub/eventPublisher'
 
 export default function SlideControls() {
   const handlePrevious = () => {
@@ -10,10 +10,15 @@ export default function SlideControls() {
     publishMessage(NEXT_ACTION)
   }
 
+  const handleEmptyState = () => {
+    publishMessage(NAVIGATE_ACTION, '/stage')
+  }
+
   return (
     <div>
-      <button onClick={handlePrevious}>Previous</button>
-      <button onClick={handleNext}>Next</button>
+      <button className='button button-primary' onClick={handleEmptyState}><i className="ri-home-line"></i></button>
+      <button className='button button-primary' onClick={handlePrevious}><i className="ri-arrow-left-line"></i></button>
+      <button className='button button-primary' onClick={handleNext}><i className="ri-arrow-right-line"></i></button>
     </div>
   )
 }

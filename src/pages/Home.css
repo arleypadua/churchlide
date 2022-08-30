@@ -12,7 +12,8 @@
   flex-grow: 1;
   max-width: 20vw;
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .home__content .praise-list {

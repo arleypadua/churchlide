@@ -18,15 +18,17 @@ export default function Stage() {
   }
 
   useEffect(() => {
+    onMessage(handleEvent)
+
+    return () => cleanupListener(handleEvent)
+  }, [])
+
+  useEffect(() => {
     const praise = collections
       .find(c => c.name.includes(collectionName))?.songs
       .find(s => s.title.includes(praiseName))
 
     setPraise(praise)
-
-    onMessage(handleEvent)
-
-    return () => cleanupListener(handleEvent)
   }, [collectionName, praiseName])
 
   return (
