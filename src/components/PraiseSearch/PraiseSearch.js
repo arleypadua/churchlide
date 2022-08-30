@@ -7,7 +7,7 @@ import './PraiseSearch.css'
 
 function sanitize(content) {
   return content
-    .replace(LINE_BREAK_REGEX, '')
+    .replace(LINE_BREAK_REGEX, ' ')
     .replace(/<font color="yellow">/gi, '')
     .replace(/<\/font>/gi, '')
     .replace(/<i>/gi, '')

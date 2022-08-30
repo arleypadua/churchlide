@@ -38,12 +38,19 @@ body {
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  position: relative;
   cursor: pointer;
   padding: 10px;
   margin: 0px 5px;
   border-radius: 5px;
   border: 1px solid #023047;
   color: #023047;
+  vertical-align: middle;
 }
 
 .button-primary {

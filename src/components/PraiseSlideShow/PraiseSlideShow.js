@@ -5,72 +5,81 @@ import { onMessage, cleanupListener, NEXT_ACTION, PREVIOUS_ACTION } from '../../
 import './PraiseSlideShow.css'
 
 function PraiseSlideShow({ praise }) {
-    const { title, content } = praise;
+  const { title, content } = praise;
 
-    const [currentPage, setCurrentPage] = useState(0)
-    const slideFocusRef = useRef(null)
-    const verse = buildVerseFromContent(content)
+  const [currentPage, setCurrentPage] = useState(0)
+  const slideFocusRef = useRef(null)
+  const verse = buildVerseFromContent(content)
 
-    function previousSlide() {
-        if (currentPage === 0) return
-        setCurrentPage((prev) => prev - 1)
+  function previousSlide() {
+    setCurrentPage((prev) => {
+      const willSetTo = prev - 1
+      console.log('trying to set to: ', willSetTo)
+      if (willSetTo < 0) return prev
+      console.log('setting to: ', willSetTo)
+      return willSetTo
+    })
+  }
+
+  function nextSlide() {
+    setCurrentPage((prev) => {
+      const willSetTo = prev + 1
+      console.log('trying to set to: ', willSetTo)
+      if (willSetTo > verse.length - 1) return prev
+      console.log('setting to: ', willSetTo)
+      return willSetTo
+    })
+  }
+
+  function handleMessage(event) {
+    console.log(currentPage, verse)
+    const { type } = event.data;
+
+    if (type === NEXT_ACTION) {
+      nextSlide()
     }
-
-    function nextSlide() {
-        if (currentPage === verse.length - 1) return
-        setCurrentPage((prev) => prev + 1)
+    if (type === PREVIOUS_ACTION) {
+      previousSlide()
     }
+  }
 
-    function handleMessage(event) {
-        const { type } = event.data;
+  useEffect(() => {
+    togglePresentationTheme()
+  }, [])
 
-        if (type === NEXT_ACTION) {
-            nextSlide()
+  useEffect(() => {
+    slideFocusRef.current.focus()
+
+    setCurrentPage(0)
+
+    onMessage(handleMessage)
+    return () => cleanupListener(handleMessage)
+  }, [title])
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') {
+      previousSlide()
+    } else if (e.key === 'ArrowRight') {
+      nextSlide()
+    }
+  }
+
+  return (
+    <div ref={slideFocusRef} tabIndex={-1} onKeyDown={handleKeyDown} className="slide_show">
+      <h1>{title}</h1>
+      <section className="content">
+        {
+          verse.map(v => (
+            <p
+              key={v.page}
+              className={`slide_verse ${v.page === currentPage ? "" : "slide_verse_hidden"}`}
+              dangerouslySetInnerHTML={{ __html: v.lines }}>
+            </p>
+          ))
         }
-        if (type === PREVIOUS_ACTION) {
-            previousSlide()
-        }
-    }
-
-    useEffect(() => {
-      togglePresentationTheme()
-    }, [])
-
-    useEffect(() => {
-        slideFocusRef.current.focus()
-
-        onMessage(handleMessage)
-        return () => cleanupListener(handleMessage)
-    }, [currentPage])
-
-    useEffect(() => {
-      setCurrentPage(0)
-    }, [title, content])
-
-    const handleKeyDown = (e) => {
-        if (e.key === 'ArrowLeft') {
-            previousSlide()
-        } else if (e.key === 'ArrowRight') {
-            nextSlide()
-        }
-    }
-
-    return (
-        <div ref={slideFocusRef} tabIndex={-1} onKeyDown={handleKeyDown} className="slide_show">
-            <h1>{title}</h1>
-            <section className="content">
-                {
-                    verse.map(v => (
-                        <p
-                            key={v.page}
-                            className={`slide_verse ${v.page === currentPage ? "" : "slide_verse_hidden"}`}
-                            dangerouslySetInnerHTML={{ __html: v.lines }}>
-                        </p>
-                    ))
-                }
-            </section>
-        </div>
-    );
+      </section>
+    </div>
+  );
 }
 
 export default PraiseSlideShow

@@ -8,7 +8,9 @@ export default function SlideShowEmptyState() {
 
   return (
     <div className="slide_show">
-      <h1>Empty State</h1>
+      <div className='slide_verse'>
+        <h1>Empty State</h1>
+      </div>
     </div>
   )
 }
