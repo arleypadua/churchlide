@@ -16,6 +16,10 @@ body {
     box-sizing: inherit;
 }
 
+.app {
+  display: flex;
+}
+
 .presentation_theme {
   background: linear-gradient(90deg, rgb(3, 0, 64) 0%, rgba(12,12,163,1) 29%, rgba(8,34,51,1) 100%);
   color: white;
