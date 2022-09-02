@@ -1,8 +1,8 @@
 import React from 'react'
 import { NAVIGATE_ACTION, publishMessage } from '../../pubsub/eventPublisher'
-import { usePraiseQueueContext } from './PraiseQueueContext'
+import { useAppContext } from '../../AppContext'
 import './PraiseQueue.css'
-import { removePraiseFromQueue, selectPraise } from './reducer'
+import { removePraiseFromQueue, selectPraise } from './PraiseQueueReducer'
 
 function PraiseQueueEntry({ name, title, handlePraiseClick, handlePraiseDeleteClick }) {
   return (
@@ -16,7 +16,7 @@ function PraiseQueueEntry({ name, title, handlePraiseClick, handlePraiseDeleteCl
 }
 
 export default function PraiseQueue() {
-  const { praiseQueue, dispatchPraiseQueue } = usePraiseQueueContext()
+  const { praiseQueueReducer: [praiseQueue, dispatchPraiseQueue] } = useAppContext()
 
   const handlePraiseClick = (collection, praiseTitle) => {
     const praiseUrl = `/stage/praise/${collection}/${praiseTitle}`

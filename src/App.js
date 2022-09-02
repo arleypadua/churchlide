@@ -5,19 +5,17 @@ import Stage from "./pages/Stage";
 import 'remixicon/fonts/remixicon.css'
 import SideBar from "./components/SideBar/SideBar";
 import Bible from "./pages/Bible";
-import { praiseQueueInitialState, praiseQueueReducer } from "./components/PraiseQueue/reducer";
-import PraiseQueueContext from "./components/PraiseQueue/PraiseQueueContext";
+import { praiseQueueInitialState, praiseQueueReducer } from "./components/PraiseQueue/PraiseQueueReducer";
+import AppContext from "./AppContext";
 
 function App() {
-  const [praiseQueue, dispatchPraiseQueue] = useReducer(praiseQueueReducer, praiseQueueInitialState)
   const praiseQueueProviderState = {
-    praiseQueue,
-    dispatchPraiseQueue
+    praiseQueueReducer: useReducer(praiseQueueReducer, praiseQueueInitialState)
   }
 
   return (
     <main className="app">
-      <PraiseQueueContext.Provider value={praiseQueueProviderState}>
+      <AppContext.Provider value={praiseQueueProviderState}>
         <SideBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,7 +23,7 @@ function App() {
           <Route path="/stage/" element={<Stage />} />
           <Route path="/stage/praise/:collectionName/:praiseName" element={<Stage />} />
         </Routes>
-      </PraiseQueueContext.Provider>
+      </AppContext.Provider>
     </main >
   );
 }

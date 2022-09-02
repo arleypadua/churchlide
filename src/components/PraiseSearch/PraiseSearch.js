@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import collections from '../../data/collections'
 import { LINE_BREAK_REGEX } from '../../helpers/buildVerseFromContent';
-import { usePraiseQueueContext } from '../PraiseQueue/PraiseQueueContext';
-import { addPraiseToQueue } from '../PraiseQueue/reducer';
+import { useAppContext } from '../../AppContext';
+import { addPraiseToQueue } from '../PraiseQueue/PraiseQueueReducer';
 import './PraiseSearch.css'
 
 function sanitize(content) {
@@ -33,7 +33,7 @@ function PraiseEntry({ name, title, content, handlePraiseClick }) {
 
 export default function PraiseSearch() {
   const [searchText, setSearchText] = useState('')
-  const { praiseQueue, dispatchPraiseQueue } = usePraiseQueueContext()
+  const { praiseQueueReducer: [praiseQueue, dispatchPraiseQueue] } = useAppContext()
 
   const handleSearchTextChange = (e) => {
     setSearchText(e.target.value)

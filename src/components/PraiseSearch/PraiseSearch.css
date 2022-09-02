@@ -22,6 +22,7 @@ div.praise_search > section > h1 {
 
 .praise_search__praise_entry h1 {
   font-size: 0.8em;
+  font-weight: 400;
 }
 
 .praise_search__praise_entry p {

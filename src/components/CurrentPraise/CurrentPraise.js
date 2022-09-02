@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { usePraiseQueueContext } from '../PraiseQueue/PraiseQueueContext'
+import { useAppContext } from '../../AppContext'
 import './CurrentPraise.css'
 
 export default function CurrentPraise() {
   const [currentPraise, setCurrentPraise] = useState()
-  const { praiseQueue } = usePraiseQueueContext()
+  const { praiseQueue } = useAppContext()
   const { title, content } = praiseQueue?.current?.praise ?? {}
 
   useEffect(() => {
