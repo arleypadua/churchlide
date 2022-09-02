@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
 
 html {
     box-sizing: border-box;
@@ -29,7 +29,7 @@ body {
   overflow: hidden;
 }
 
-.input {
+.input, .select {
   padding: 5px;
   height: 35px;
   border-radius: 5px;

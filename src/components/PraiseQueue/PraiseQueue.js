@@ -30,7 +30,7 @@ export default function PraiseQueue() {
   }
   
   return (
-    <ul>
+    <ul className='praise_queue'>
       {
         praiseQueue.praiseQueue.map(p => {
           return (

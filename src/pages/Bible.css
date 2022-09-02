@@ -1,0 +1,50 @@
+.bible {
+  padding: 15px;
+  counter-reset: verse;
+  text-align: justify;
+}
+
+.bible__index {
+  position: sticky;
+  top: 0;
+  height: 50px;
+  padding: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.bible__chapter {
+  padding: 70px;
+}
+
+.bible__chapter span::before {
+  counter-increment: verse;
+  content: counter(verse);
+
+  vertical-align: super;
+  font-size: x-small;
+  font-weight: bold;
+  color: black;
+
+  padding-left: 5px;
+  padding-right: 3px;
+}
+
+.bible__chapter span {
+  padding: 5px 2px 5px 2px;
+  margin-block-end: 0em;
+  line-height: 35px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.bible__chapter span:hover {
+  background-color: rgba(95, 194, 244, .1);
+}
+
+.bible__verse__selected {
+  border: 1px dotted #5fc2f4;
+  background-color: rgba(95, 194, 244, .1);
+}

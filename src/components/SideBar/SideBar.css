@@ -20,6 +20,11 @@
   transition: color 0.2s ease-in-out;
 }
 
+.sidebar__menu li a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .sidebar__menu > .active::after {
   position: absolute;
   content: " ";
@@ -29,7 +34,7 @@
   background-color: #5fc2f4;
 
   bottom: 2px;
-  left: calc(50% - 5px)
+  left: calc(50% - 5px);
 }
 
 .sidebar__menu > li:hover {

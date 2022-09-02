@@ -1,29 +1,28 @@
-.home__content {
+.home {
   display: flex;
   padding: 10px;
   justify-content: space-between;
 }
 
-.home__content div {
+.home div {
   padding: 5px;
 }
 
-.home__content .praise-search {
+.home .home__praise-search {
   flex-grow: 1;
-  max-width: 20vw;
-  min-width: 20vw;
+  min-width: 200px;
+  max-width: 400px;
   height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
-.home__content .praise-list {
+.home .home__praise-list {
   flex-grow: 1;
-  max-width: 20vw;
-  min-width: 20vw;
+  width: 350px;
   height: 100%;
 }
 
-.home__content .current-praise {
+.home .home__current-praise {
   flex-grow: 2;
 }

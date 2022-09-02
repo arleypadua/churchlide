@@ -1,3 +1,7 @@
+.praise_queue {
+  padding-inline-start: 0px;
+}
+
 .praise_queue__praise_entry {
   display: flex;
   justify-content: space-between;

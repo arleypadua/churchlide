@@ -1,29 +1,19 @@
-import React, { useReducer } from "react"
+import React from "react"
 import CurrentPraise from "../components/CurrentPraise/CurrentPraise"
 import PraiseQueue from "../components/PraiseQueue/PraiseQueue"
-import PraiseQueueContext from "../components/PraiseQueue/PraiseQueueContext"
-import { praiseQueueInitialState, praiseQueueReducer } from "../components/PraiseQueue/reducer"
 import PraiseSearch from "../components/PraiseSearch/PraiseSearch"
 import SlideControls from "../components/SlideControls/SlideControls"
 import "./Home.css"
 
 export default function Home() {
-  const [praiseQueue, dispatchPraiseQueue] = useReducer(praiseQueueReducer, praiseQueueInitialState)
-  const praiseQueueProviderState = {
-    praiseQueue,
-    dispatchPraiseQueue
-  }
-
   return (
-    <PraiseQueueContext.Provider value={praiseQueueProviderState}>
-      <main className="home__content">
-        <div className="praise-search"><PraiseSearch /></div>
-        <div className="praise-list"><PraiseQueue /></div>
-        <div className="current-praise">
-          <SlideControls />
-          <CurrentPraise />
-        </div>
-      </main>
-    </PraiseQueueContext.Provider>
+    <main className="home">
+      <div className="home__praise-search"><PraiseSearch /></div>
+      <div className="home__praise-list"><PraiseQueue /></div>
+      <div className="home__current-praise">
+        <SlideControls />
+        <CurrentPraise />
+      </div>
+    </main>
   )
 }
