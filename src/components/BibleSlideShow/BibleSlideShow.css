@@ -1,0 +1,33 @@
+.bible_slide_show {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bible_slide_show h1 {
+  font-size: 2vw;
+}
+
+.bible_slide_show:focus {
+  outline: none;
+}
+
+.bible_slide_show__verse {
+  line-height: 1.5em;
+
+  font-size: 3vw;
+  text-align: center;
+  animation: fadeIn 1.5s;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bible_slide_show__verse span {
+  align-self: flex-start;
+  height: 70%;
+}

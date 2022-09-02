@@ -64,6 +64,9 @@ const getVerse = (versionKey, bookAbbreviation, chapterIndex) => {
 }
 
 const next = (versionKey, bookAbbreviation, chapterIndex, verseIndex) => {
+  chapterIndex = parseInt(chapterIndex)
+  verseIndex = parseInt(verseIndex)
+
   const books = getBooks(versionKey)
   const currentBook = books.find(b => b.abbrev === bookAbbreviation)
   const currentBookIndex = books.indexOf(currentBook)
@@ -81,6 +84,9 @@ const next = (versionKey, bookAbbreviation, chapterIndex, verseIndex) => {
 }
 
 const previous = (versionKey, bookAbbreviation, chapterIndex, verseIndex) => {
+  chapterIndex = parseInt(chapterIndex)
+  verseIndex = parseInt(verseIndex)
+
   const books = getBooks(versionKey)
   const currentBook = books.find(b => b.abbrev === bookAbbreviation)
   const currentBookIndex = books.indexOf(currentBook)

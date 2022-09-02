@@ -1,7 +1,9 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import SlideControls from '../components/SlideControls/SlideControls'
 import bible from '../data/bible'
+import { NAVIGATE_ACTION, publishMessage } from '../pubsub/eventPublisher'
 import './Bible.css'
 
 export default function Bible() {
@@ -83,6 +85,11 @@ export default function Bible() {
     selectVerse(selectedVersionKey, selectedBook, selectedChapter, verse.verseIndex)
   }
 
+  const handleOpenPresentation = () => {
+    const url = `/stage/bible/${selectedVersionKey}/${selectedBook}/${selectedChapter}/${selectedVerse}`
+    publishMessage(NAVIGATE_ACTION, url)
+  }
+
   return (
     <div className='bible'>
       <div className="bible__index">
@@ -142,8 +149,10 @@ export default function Bible() {
             ))
           }
         </select>
-        <button className='button button-primary' onClick={handlePrevious}><i className="ri-arrow-left-line"></i></button>
-        <button className='button button-primary' onClick={handleNext}><i className="ri-arrow-right-line"></i></button>
+        <SlideControls onPrevious={handlePrevious} onNext={handleNext} />
+        <button className='button button-primary' onClick={handleOpenPresentation}>
+          <i className="ri-slideshow-line"></i> Apresentar Bíblia
+        </button>
       </div>
       <div className='bible__chapter'>
         {

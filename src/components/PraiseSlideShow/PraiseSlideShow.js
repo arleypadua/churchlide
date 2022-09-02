@@ -32,7 +32,6 @@ function PraiseSlideShow({ praise }) {
   }
 
   function handleMessage(event) {
-    console.log(currentPage, verse)
     const { type } = event.data;
 
     if (type === NEXT_ACTION) {
