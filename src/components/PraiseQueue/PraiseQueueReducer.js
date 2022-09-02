@@ -1,6 +1,7 @@
 export const ADD_PRAISE_TO_QUEUE = 'ADD_PRAISE_TO_QUEUE'
 export const REMOVE_PRAISE_FROM_QUEUE = 'REMOVE_PRAISE_FROM_QUEUE'
 export const SELECT_PRAISE = 'SELECT_PRAISE'
+export const REMOVE_ALL = 'REMOVE_ALL'
 
 export const praiseQueueInitialState = {
   praiseQueue: [],
@@ -21,6 +22,10 @@ export const removePraiseFromQueue = (collectionName, praiseTitle) => ({
     collectionName,
     praiseTitle
   }
+})
+
+export const removeAllFromQueue = () => ({
+  type: REMOVE_ALL,
 })
 
 export const selectPraise = (collectionName, praiseTitle) => ({
@@ -53,6 +58,12 @@ export function praiseQueueReducer(state, action) {
       return {
         ...state,
         current: toSelect
+      }
+    case REMOVE_ALL:
+      return {
+        ...state,
+        current: undefined,
+        praiseQueue: []
       }
     default: return state
   }

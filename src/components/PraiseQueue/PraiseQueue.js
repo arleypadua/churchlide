@@ -2,7 +2,7 @@ import React from 'react'
 import { NAVIGATE_ACTION, publishMessage } from '../../pubsub/eventPublisher'
 import { useAppContext } from '../../AppContext'
 import './PraiseQueue.css'
-import { removePraiseFromQueue, selectPraise } from './PraiseQueueReducer'
+import { removeAllFromQueue, removePraiseFromQueue, selectPraise } from './PraiseQueueReducer'
 
 function PraiseQueueEntry({ name, title, handlePraiseClick, handlePraiseDeleteClick }) {
   return (
@@ -21,29 +21,42 @@ export default function PraiseQueue() {
   const handlePraiseClick = (collection, praiseTitle) => {
     const praiseUrl = `/stage/praise/${collection}/${praiseTitle}`
     publishMessage(NAVIGATE_ACTION, praiseUrl)
-    
+
     dispatchPraiseQueue(selectPraise(collection, praiseTitle))
   }
 
   const handlePraiseDeleteClick = (collection, praiseTitle) => {
     dispatchPraiseQueue(removePraiseFromQueue(collection, praiseTitle))
   }
-  
+
+  const handleCleanClick = () => {
+    dispatchPraiseQueue(removeAllFromQueue())
+  }
+
   return (
-    <ul className='praise_queue'>
-      {
-        praiseQueue.praiseQueue.map(p => {
-          return (
-            <PraiseQueueEntry 
-              key={`${p.collection}|${p.praise.title}`}
-              name={p.collection}
-              title={p.praise.title}
-              handlePraiseClick={handlePraiseClick}
-              handlePraiseDeleteClick={handlePraiseDeleteClick}
-            />
-          )
-        })
-      }
-    </ul>
+    <>
+      <ul className='praise_queue'>
+        {
+          praiseQueue.praiseQueue.map(p => {
+            return (
+              <PraiseQueueEntry
+                key={`${p.collection}|${p.praise.title}`}
+                name={p.collection}
+                title={p.praise.title}
+                handlePraiseClick={handlePraiseClick}
+                handlePraiseDeleteClick={handlePraiseDeleteClick}
+              />
+            )
+          })
+        }
+      </ul>
+      <div
+        className='praise_queue__clean'
+        onClick={handleCleanClick}
+        hidden={praiseQueue.praiseQueue.length === 0}
+      >
+        Limpar
+      </div>
+    </>
   )
 }
