@@ -1,6 +1,6 @@
 import React from 'react'
-import { useAppContext } from '../../AppContext'
-import { setPresentationBackgroundColor, settingsInitialState } from '../../AppReducer'
+import { useAppContext } from '../../../AppContext'
+import { setPresentationBackgroundColor, settingsInitialState } from '../../../AppReducer'
 import './PresentationThemeSettings.css'
 
 export default function PresentationThemeSettings() {

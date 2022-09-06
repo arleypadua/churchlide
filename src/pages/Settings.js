@@ -1,5 +1,5 @@
 import React from 'react'
-import PresentationThemeSettings from '../components/PresentationThemeSettings/PresentationThemeSettings'
+import PresentationThemeSettings from '../components/settings/PresentationThemeSettings/PresentationThemeSettings'
 import './Settings.css'
 
 export default function Settings() {
