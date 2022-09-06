@@ -4,7 +4,10 @@ import BibleSlideShow from '../components/BibleSlideShow/BibleSlideShow'
 import PraiseSlideShow from '../components/PraiseSlideShow/PraiseSlideShow'
 import EmptyStateSlide from '../components/EmptyStateSlide/EmptyStateSlide'
 import collections from '../data/collections'
-import { cleanupListener, NAVIGATE_ACTION, onMessage } from '../pubsub/eventPublisher'
+import { cleanupListener, NAVIGATE_ACTION, onMessage, SETTINGS_CHANGED } from '../pubsub/eventPublisher'
+import togglePresentationTheme from '../helpers/togglePresentationTheme'
+import { useAppContext } from '../AppContext'
+import { loadInitialSettings } from '../AppReducer'
 
 function PraiseStage() {
   const { collectionName, praiseName } = useParams()
@@ -35,11 +38,17 @@ export default function Stage() {
   const location = useLocation()
 
   const navigate = useNavigate()
+  
+  const { appReducer: [app, dispatchApp] } = useAppContext()
+  const { settings: { presentationBackground: { color1, color2, color3 } } } = app
 
   const handleEvent = (event) => {
     const { type, payload } = event.data
     if (type === NAVIGATE_ACTION) {
       navigate(payload)
+    }
+    if (type === SETTINGS_CHANGED) {
+      dispatchApp(loadInitialSettings())
     }
   }
 
@@ -48,6 +57,10 @@ export default function Stage() {
 
     return () => cleanupListener(handleEvent)
   }, [])
+
+  useEffect(() => {
+    togglePresentationTheme(color1, color2, color3)
+  }, [color1, color2, color3])
 
   if (location.pathname.startsWith('/stage/empty')) return <EmptyStateSlide />
   if (location.pathname.startsWith('/stage/praise/')) return <PraiseStage />

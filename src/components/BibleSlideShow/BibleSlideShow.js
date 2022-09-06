@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import bible from '../../data/bible'
-import togglePresentationTheme from '../../helpers/togglePresentationTheme'
 import { cleanupListener, NEXT_ACTION, onMessage, PREVIOUS_ACTION } from '../../pubsub/eventPublisher'
 import './BibleSlideShow.css'
 
@@ -40,10 +39,6 @@ export default function BibleSlideShow() {
       previousVerse()
     }
   }
-
-  useEffect(() => {
-    togglePresentationTheme()
-  }, [])
 
   useEffect(() => {
     const bookName = bible.getBook(versionKey, bookAbbreviation)?.name

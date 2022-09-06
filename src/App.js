@@ -7,8 +7,9 @@ import SideBar from "./components/SideBar/SideBar";
 import Bible from "./pages/Bible";
 import { praiseQueueInitialState, praiseQueueReducer } from "./components/PraiseQueue/PraiseQueueReducer";
 import AppContext from "./AppContext";
-import { appInitialState, appReducer } from "./AppReducer";
+import { appInitialState, appReducer, loadInitialSettings } from "./AppReducer";
 import Settings from "./pages/Settings";
+import { useEffect } from "react";
 
 function App() {
   const location = useLocation()
@@ -18,6 +19,11 @@ function App() {
   }
 
   const shouldShowSideBar = () => !location.pathname.startsWith("/stage")
+
+  useEffect(() => {
+    const [_, dispatchApp] = praiseQueueProviderState.appReducer
+    dispatchApp(loadInitialSettings())
+  }, [])
 
   return (
     <main className="app">

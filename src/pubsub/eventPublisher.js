@@ -25,3 +25,4 @@ export {
 export const NEXT_ACTION = 'next'
 export const PREVIOUS_ACTION = 'previous'
 export const NAVIGATE_ACTION = 'navigate'
+export const SETTINGS_CHANGED = 'settings_changed'

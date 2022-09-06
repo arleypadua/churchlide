@@ -1,0 +1,12 @@
+.theme_settings {
+  display: flex;
+}
+
+.theme_settings * {
+  align-self: center;
+}
+
+.theme_settings__background_colors label > input {
+  margin-left: 10px;
+  margin-right: 10px;
+}

@@ -1,0 +1,22 @@
+.settings {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.settings__panel {
+  padding: 15px;
+  flex-grow: 1;
+  background-color: white;
+  min-width: 100px;
+  max-width: 800px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px 0 rgba(2, 48, 71, 0.1), 0 6px 20px 0 rgba(2, 48, 71, 0.09);
+}
+
+.settings__panel h1 {
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
