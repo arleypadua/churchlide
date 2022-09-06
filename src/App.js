@@ -8,6 +8,7 @@ import Bible from "./pages/Bible";
 import { praiseQueueInitialState, praiseQueueReducer } from "./components/PraiseQueue/PraiseQueueReducer";
 import AppContext from "./AppContext";
 import { appInitialState, appReducer } from "./AppReducer";
+import Settings from "./pages/Settings";
 
 function App() {
   const location = useLocation()
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/bible" element={<Bible />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/stage/empty" element={<Stage />} />
           <Route path="/stage/praise/:collectionName/:praiseName" element={<Stage />} />
           <Route path="/stage/bible/:versionKey/:bookAbbreviation/:chapterIndex/:verseIndex" element={<Stage />} />

@@ -10,6 +10,10 @@ const items = [
   {
     route: '/bible',
     icon: 'ri-book-line ri-fw'
+  },
+  {
+    route: '/settings',
+    icon: 'ri-settings-3-line ri-fw'
   }
 ]
 
