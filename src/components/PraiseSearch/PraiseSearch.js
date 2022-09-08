@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import collections from '../../data/collections'
 import { LINE_BREAK_REGEX } from '../../helpers/buildVerseFromContent';
 import { useAppContext } from '../../AppContext';
 import { addPraiseToQueue } from '../PraiseQueue/PraiseQueueReducer';
@@ -33,7 +32,10 @@ function PraiseEntry({ name, title, content, handlePraiseClick }) {
 
 export default function PraiseSearch() {
   const [searchText, setSearchText] = useState('')
-  const { praiseQueueReducer: [praiseQueue, dispatchPraiseQueue] } = useAppContext()
+  const {
+    appReducer: [app],
+    praiseQueueReducer: [, dispatchPraiseQueue] 
+  } = useAppContext()
 
   const handleSearchTextChange = (e) => {
     setSearchText(e.target.value)
@@ -41,7 +43,7 @@ export default function PraiseSearch() {
 
   const searchPraises = (searchTerm) => {
     if (searchTerm === '') return []
-    return collections.map(c => (
+    return app.loadedCollections.map(c => (
       { ...c, songs: c.songs.filter(s => s.title.toLowerCase().includes(searchTerm.toLowerCase())) }
     ))
   }

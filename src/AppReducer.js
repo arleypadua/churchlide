@@ -1,9 +1,11 @@
+import collections from './data/collections'
 import { publishMessage, SETTINGS_CHANGED } from './pubsub/eventPublisher'
 import settingsRepository from './repositories/settingsRepository'
 
 export const LOAD_INITIAL_SETTINGS = 'LOAD_INITIAL_SETTINGS'
 export const SET_PRESENTATION_WINDOW = 'SET_PRESENTATION_WINDOW'
 export const SET_PRESENTATION_BACKGROUND_COLOR = 'SET_PRESENTATION_BACKGROUND_COLOR'
+export const ADD_PRAISE_TO_COLLECTION = 'ADD_PRAISE_TO_COLLECTION'
 
 export const settingsInitialState = {
   presentationBackground: {
@@ -15,7 +17,8 @@ export const settingsInitialState = {
 
 export const appInitialState = {
   presentationWindow: undefined,
-  settings: settingsInitialState
+  settings: settingsInitialState,
+  loadedCollections: collections
 }
 
 export const loadInitialSettings = () => ({
@@ -32,6 +35,15 @@ export const setPresentationBackgroundColor = (colorName, colorValue) => ({
   payload: {
     colorName,
     colorValue
+  }
+})
+
+export const addPraiseToCollection = (collectionName, title, content) => ({
+  type: ADD_PRAISE_TO_COLLECTION,
+  payload: {
+    collectionName,
+    title,
+    content
   }
 })
 
@@ -65,6 +77,23 @@ export function appReducer(state, action) {
       return {
         ...state,
         settings: newSettings
+      }
+    }
+
+    case ADD_PRAISE_TO_COLLECTION: {
+      const newSong = { title: action.payload.title, content: action.payload.content }
+      const collection = state.loadedCollections.find(c => c.name === action.payload.collectionName)
+      if (collection) {
+        collection.songs.push(newSong)
+        return {
+          ...state,
+          loadedCollections: state.loadedCollections
+        }
+      } else {
+        state.loaddedCollectins.push({
+          name: action.payload.collectionName,
+          songs: [newSong]
+        })
       }
     }
 

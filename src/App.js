@@ -1,15 +1,18 @@
-import { useReducer} from "react"
-import { Route, Routes, useLocation } from "react-router-dom";
-import Home from "./pages/Home";
-import Stage from "./pages/Stage";
 import 'remixicon/fonts/remixicon.css'
+
+import { useReducer, useEffect } from "react"
+import { Route, Routes, useLocation } from "react-router-dom";
+
+import Home from "./pages/Home";
+import AddPraise from "./pages/AddPraise";
+import Stage from "./pages/Stage";
 import SideBar from "./components/SideBar/SideBar";
 import Bible from "./pages/Bible";
-import { praiseQueueInitialState, praiseQueueReducer } from "./components/PraiseQueue/PraiseQueueReducer";
+import Settings from "./pages/Settings";
+
 import AppContext from "./AppContext";
 import { appInitialState, appReducer, loadInitialSettings } from "./AppReducer";
-import Settings from "./pages/Settings";
-import { useEffect } from "react";
+import { praiseQueueInitialState, praiseQueueReducer } from "./components/PraiseQueue/PraiseQueueReducer";
 
 function App() {
   const location = useLocation()
@@ -31,6 +34,7 @@ function App() {
         { shouldShowSideBar() && <SideBar /> }
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/add-praise" element={<AddPraise />} />
           <Route path="/bible" element={<Bible />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/settings/sync/microsoft" element={<Settings />} />

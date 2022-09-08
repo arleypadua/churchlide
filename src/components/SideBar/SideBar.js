@@ -8,6 +8,10 @@ const items = [
     icon: 'ri-music-2-line ri-fw'
   },
   {
+    route: '/add-praise',
+    icon: 'ri-add-line ri-fw'
+  },
+  {
     route: '/bible',
     icon: 'ri-book-line ri-fw'
   },
