@@ -56,7 +56,7 @@ export default function AddPraise() {
         <div>
           <button
             onClick={addClick}
-            className="button"
+            className="button button-primary"
             disabled={addDisabled}
           >
             Adicionar

@@ -1,0 +1,33 @@
+.modal__overlay {
+  position: absolute;
+  height: 100vh;
+  width: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.modal__window {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  min-height: 150px;
+  max-height: 500px;
+  background-color: rgba(255, 255, 255, 0.8);;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.modal__content {
+  text-align: center;
+}
+
+.modal__confirmationButtons {
+  display: flex;
+  justify-content: center;
+}

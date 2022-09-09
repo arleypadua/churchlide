@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useAppContext } from '../../AppContext'
 import { useNavigate, useParams } from 'react-router-dom'
 import { updatePraise } from '../../AppReducer'
+import Modal from '../../components/Modal/Modal'
 
 export default function AddPraise() {
   const navigate = useNavigate()
@@ -13,6 +14,8 @@ export default function AddPraise() {
   const [initialPraiseContent, setInitialPraiseContent] = useState('')
   const [editingPraiseContent, setEditingPraiseContent] = useState('')
   const [editDisabled, setEditDisabled] = useState(true)
+
+  const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
     const editDisabledEvaluated = editingPraiseTitle.length === 0
@@ -38,6 +41,18 @@ export default function AddPraise() {
 
     dispatchApp(updatePraise(collectionName, praiseName, editingPraiseTitle, editingPraiseContent))
     navigate('/')
+  }
+
+  const removeClick = () => {
+    setIsDeleting(true)
+  }
+
+  const confirmRemoveClick = () => {
+    setIsDeleting(false)
+  }
+
+  const cancelRemoveClick = () => {
+    setIsDeleting(false)
   }
 
   return (
@@ -71,13 +86,26 @@ export default function AddPraise() {
         <div>
           <button
             onClick={editClick}
-            className="button"
+            className="button button-primary"
             disabled={editDisabled}
           >
             Atualizar
           </button>
+          <button
+            onClick={removeClick}
+            className="button"
+          >
+            Remover
+          </button>
         </div>
       </div>
+      <Modal
+        show={isDeleting}
+        textMessage={`Tem certeza que deseja excluir: ${editingPraiseTitle}`}
+        showConfirmationButtons
+        onConfirm={confirmRemoveClick}
+        onCancel={cancelRemoveClick}
+      />
     </div>
   )
 }
