@@ -45,10 +45,10 @@ export default function PraiseQueue() {
     <>
       <ul className='praise_queue'>
         {
-          praiseQueue.praiseQueue.map(p => {
+          praiseQueue.praiseQueue.map((p, i) => {
             return (
               <PraiseQueueEntry
-                key={`${p.collection}|${p.praise.title}`}
+                key={`${p.collection}|${p.praise.title}|${i}`}
                 name={p.collection}
                 title={p.praise.title}
                 handlePraiseClick={handlePraiseClick}

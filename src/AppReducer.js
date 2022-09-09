@@ -104,7 +104,7 @@ export function appReducer(state, action) {
         const mutatedCollections = [
           ...state.loadedCollections.slice(0, existingCollectionIndex),
           mutatedCollection,
-          ...state.loadedCollections.slice(existingCollectionIndex)
+          ...state.loadedCollections.slice(existingCollectionIndex + 1)
         ]
 
         executeAsync(() => {

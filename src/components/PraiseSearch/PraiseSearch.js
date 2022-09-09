@@ -68,8 +68,8 @@ export default function PraiseSearch() {
 
         {
           praises.map(({ name, songs }) => (
-            <section>
-              <h1 key={name}>{name}</h1>
+            <section key={name}>
+              <h1>{name}</h1>
 
               {songs.length !== 0 && songs.map((song, index) => (
                 <PraiseEntry

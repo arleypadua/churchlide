@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import BibleSlideShow from '../components/BibleSlideShow/BibleSlideShow'
 import PraiseSlideShow from '../components/PraiseSlideShow/PraiseSlideShow'
 import EmptyStateSlide from '../components/EmptyStateSlide/EmptyStateSlide'
-import collections from '../data/collections'
 import { cleanupListener, COLLECTIONS_CHANGED, NAVIGATE_ACTION, onMessage, SETTINGS_CHANGED } from '../pubsub/eventPublisher'
 import togglePresentationTheme from '../helpers/togglePresentationTheme'
 import { useAppContext } from '../AppContext'
@@ -11,10 +10,11 @@ import { loadCollections, loadSettings } from '../AppReducer'
 
 function PraiseStage() {
   const { collectionName, praiseName } = useParams()
+  const { appReducer: [app, dispatchApp] } = useAppContext()
   const [praise, setPraise] = useState(undefined)
 
   useEffect(() => {
-    const praise = collections
+    const praise = app.loadedCollections
       .find(c => c.name.includes(collectionName))?.songs
       .find(s => s.title.includes(praiseName))
 
