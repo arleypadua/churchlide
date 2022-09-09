@@ -17,8 +17,8 @@ export default function Modal({ show, textMessage, showConfirmationButtons, onCo
           <div className='modal__content'>{textMessage}</div>
           {showConfirmationButtons && (
             <div className="modal__confirmationButtons">
-              <button className="button" onClick={handleCancel}>Não</button>
               <button className="button button-primary" onClick={handleConfirm}>Sim</button>
+              <button className="button" onClick={handleCancel}>Não</button>
             </div>
           )}
         </div>

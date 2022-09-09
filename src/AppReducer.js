@@ -10,6 +10,7 @@ export const SET_PRESENTATION_WINDOW = 'SET_PRESENTATION_WINDOW'
 export const SET_PRESENTATION_BACKGROUND_COLOR = 'SET_PRESENTATION_BACKGROUND_COLOR'
 export const ADD_PRAISE_TO_COLLECTION = 'ADD_PRAISE_TO_COLLECTION'
 export const UPDATE_PRAISE = 'UPDATE_PRAISE'
+export const REMOVE_PRAISE = 'REMOVE_PRAISE'
 
 export const settingsInitialState = {
   presentationBackground: {
@@ -46,11 +47,12 @@ export const setPresentationBackgroundColor = (colorName, colorValue) => ({
   }
 })
 
-export const addPraiseToCollection = (collectionName, title) => ({
+export const addPraiseToCollection = (collectionName, title, content) => ({
   type: ADD_PRAISE_TO_COLLECTION,
   payload: {
     collectionName,
     title,
+    content
   }
 })
 
@@ -61,6 +63,14 @@ export const updatePraise = (collectionName, title, newTitle, newContent) => ({
     title,
     newTitle,
     newContent,
+  }
+})
+
+export const removePraise = (collectionName, title) => ({
+  type: REMOVE_PRAISE,
+  payload: {
+    collectionName,
+    title,
   }
 })
 
@@ -167,6 +177,38 @@ export function appReducer(state, action) {
         mutatedCollection,
         ...state.loadedCollections.slice(existingCollectionIndex + 1)
       ]
+
+      executeAsync(() => {
+        collectionsRepository.persistCollections(mutatedCollections)
+        publishMessage(COLLECTIONS_CHANGED)
+      })
+
+      return {
+        ...state,
+        loadedCollections: mutatedCollections
+      }
+    }
+
+    case REMOVE_PRAISE: {
+      const existingCollection = state.loadedCollections.find(c => c.name === action.payload.collectionName)
+      if (!existingCollection) return state
+      const existingCollectionIndex = state.loadedCollections.indexOf(existingCollection)
+
+      const existingSong = existingCollection.songs.find(s => s.title === action.payload.title)
+      if (!existingSong) return state
+
+      const mutatedCollection = { ...existingCollection }
+      mutatedCollection.songs = mutatedCollection.songs.filter(s => s !== existingSong)
+
+      let mutatedCollections = [
+        ...state.loadedCollections.slice(0, existingCollectionIndex),
+        mutatedCollection,
+        ...state.loadedCollections.slice(existingCollectionIndex + 1)
+      ]
+
+      if (mutatedCollection.songs.length === 0) {
+        mutatedCollections = mutatedCollections.filter(c => c !== mutatedCollection)
+      }
 
       executeAsync(() => {
         collectionsRepository.persistCollections(mutatedCollections)

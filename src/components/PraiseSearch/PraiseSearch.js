@@ -5,6 +5,7 @@ import { addPraiseToQueue } from '../PraiseQueue/PraiseQueueReducer';
 import './PraiseSearch.css'
 
 function sanitize(content) {
+  if (!content) return content
   return content
     .replace(LINE_BREAK_REGEX, ' ')
     .replace(/<font color="yellow">/gi, '')

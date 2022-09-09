@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { useAppContext } from '../../AppContext'
 import { useNavigate, useParams } from 'react-router-dom'
-import { updatePraise } from '../../AppReducer'
+import { removePraise, updatePraise } from '../../AppReducer'
 import Modal from '../../components/Modal/Modal'
 
 export default function AddPraise() {
@@ -49,6 +49,8 @@ export default function AddPraise() {
 
   const confirmRemoveClick = () => {
     setIsDeleting(false)
+    dispatchApp(removePraise(collectionName, praiseName))
+    navigate('/')
   }
 
   const cancelRemoveClick = () => {
