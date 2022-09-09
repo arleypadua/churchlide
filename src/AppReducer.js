@@ -9,6 +9,7 @@ export const LOAD_COLLECTIONS = 'LOAD_COLLECTIONS'
 export const SET_PRESENTATION_WINDOW = 'SET_PRESENTATION_WINDOW'
 export const SET_PRESENTATION_BACKGROUND_COLOR = 'SET_PRESENTATION_BACKGROUND_COLOR'
 export const ADD_PRAISE_TO_COLLECTION = 'ADD_PRAISE_TO_COLLECTION'
+export const UPDATE_PRAISE = 'UPDATE_PRAISE'
 
 export const settingsInitialState = {
   presentationBackground: {
@@ -45,12 +46,21 @@ export const setPresentationBackgroundColor = (colorName, colorValue) => ({
   }
 })
 
-export const addPraiseToCollection = (collectionName, title, content) => ({
+export const addPraiseToCollection = (collectionName, title) => ({
   type: ADD_PRAISE_TO_COLLECTION,
   payload: {
     collectionName,
     title,
-    content
+  }
+})
+
+export const updatePraise = (collectionName, title, newTitle, newContent) => ({
+  type: UPDATE_PRAISE,
+  payload: {
+    collectionName,
+    title,
+    newTitle,
+    newContent,
   }
 })
 
@@ -131,6 +141,41 @@ export function appReducer(state, action) {
           ...state,
           loadedCollections: mutatedCollections
         }
+      }
+    }
+
+    case UPDATE_PRAISE: {
+      const updatedSong = { title: action.payload.newTitle, content: action.payload.newContent }
+      const existingCollection = state.loadedCollections.find(c => c.name === action.payload.collectionName)
+      if (!existingCollection) return state
+
+      const existingSong = existingCollection.songs.find(s => s.title === action.payload.title)
+      if (!existingSong) return state
+
+      const existingCollectionIndex = state.loadedCollections.indexOf(existingCollection)
+      const existingSongIndex = existingCollection.songs.indexOf(existingSong)
+
+      const mutatedCollection = { ...existingCollection }
+      mutatedCollection.songs = [
+        ...mutatedCollection.songs.slice(0, existingSongIndex),
+        { ...existingSong, ...updatedSong },
+        ...mutatedCollection.songs.slice(existingSongIndex + 1)
+      ]
+
+      const mutatedCollections = [
+        ...state.loadedCollections.slice(0, existingCollectionIndex),
+        mutatedCollection,
+        ...state.loadedCollections.slice(existingCollectionIndex + 1)
+      ]
+
+      executeAsync(() => {
+        collectionsRepository.persistCollections(mutatedCollections)
+        publishMessage(COLLECTIONS_CHANGED)
+      })
+
+      return {
+        ...state,
+        loadedCollections: mutatedCollections
       }
     }
 

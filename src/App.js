@@ -5,6 +5,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
 import AddPraise from "./pages/AddPraise/AddPraise";
+import EditPraise from "./pages/EditPraise/EditPraise";
 import Stage from "./pages/Stage/Stage";
 import SideBar from "./components/SideBar/SideBar";
 import Bible from "./pages/Bible/Bible";
@@ -36,7 +37,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add-praise" element={<AddPraise />} />
-          <Route path="/add-praise/:collectionName/:praiseName" element={<AddPraise />} />
+          <Route path="/edit-praise/:collectionName/:praiseName" element={<EditPraise />} />
           <Route path="/bible" element={<Bible />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/settings/sync/microsoft" element={<Settings />} />

@@ -9,7 +9,7 @@ function PraiseQueueEntry({ name, title, handlePraiseClick, handlePraiseDeleteCl
   const navigate = useNavigate()
 
   const handleEditClick = () => {
-    navigate(`/add-praise/${name}/${title}`)
+    navigate(`/edit-praise/${name}/${title}`)
   }
 
   return (
