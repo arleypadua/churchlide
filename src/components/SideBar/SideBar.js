@@ -9,7 +9,7 @@ const items = [
     icon: 'ri-music-2-line ri-fw'
   },
   {
-    routePattern: /\/add-praise/,
+    routePattern: /\/(add-praise|edit-praise)/,
     route: '/add-praise',
     icon: 'ri-add-line ri-fw'
   },

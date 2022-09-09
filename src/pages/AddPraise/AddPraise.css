@@ -20,3 +20,8 @@
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
+
+.add_praise__panel .input, .add_praise__panel .text_area {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

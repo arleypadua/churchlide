@@ -61,6 +61,7 @@ export default function AddPraise() {
         />
 
         <textarea
+          className='text_area input_full_width tall'
           cols="30"
           rows="10"
           placeholder='Conteúdo'

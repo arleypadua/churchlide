@@ -29,12 +29,16 @@ body {
   overflow: hidden;
 }
 
-.input, .select {
+.input, .select, .text_area {
   padding: 5px;
   height: 35px;
   border-radius: 5px;
   border: #023047 solid 1px;
   transition: border ease-in-out 0.5s;
+}
+
+.text_area.tall {
+  height: 25vh;
 }
 
 .input_full_width {
