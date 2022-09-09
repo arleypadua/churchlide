@@ -1,8 +1,11 @@
 import collections from './data/collections'
-import { publishMessage, SETTINGS_CHANGED } from './pubsub/eventPublisher'
+import executeAsync from './helpers/executeAsync'
+import { COLLECTIONS_CHANGED, publishMessage, SETTINGS_CHANGED } from './pubsub/eventPublisher'
+import collectionsRepository from './repositories/collectionsRepository'
 import settingsRepository from './repositories/settingsRepository'
 
-export const LOAD_INITIAL_SETTINGS = 'LOAD_INITIAL_SETTINGS'
+export const LOAD_SETTINGS = 'LOAD_SETTINGS'
+export const LOAD_COLLECTIONS = 'LOAD_COLLECTIONS'
 export const SET_PRESENTATION_WINDOW = 'SET_PRESENTATION_WINDOW'
 export const SET_PRESENTATION_BACKGROUND_COLOR = 'SET_PRESENTATION_BACKGROUND_COLOR'
 export const ADD_PRAISE_TO_COLLECTION = 'ADD_PRAISE_TO_COLLECTION'
@@ -21,8 +24,12 @@ export const appInitialState = {
   loadedCollections: collections
 }
 
-export const loadInitialSettings = () => ({
-  type: LOAD_INITIAL_SETTINGS
+export const loadSettings = () => ({
+  type: LOAD_SETTINGS
+})
+
+export const loadCollections = () => ({
+  type: LOAD_COLLECTIONS
 })
 
 export const setPresentationWindow = (window) => ({
@@ -49,13 +56,20 @@ export const addPraiseToCollection = (collectionName, title, content) => ({
 
 export function appReducer(state, action) {
   switch (action.type) {
-    case LOAD_INITIAL_SETTINGS: {
+    case LOAD_SETTINGS: {
       return {
         ...state,
         settings: settingsRepository.getSettings()
       }
     }
-      
+
+    case LOAD_COLLECTIONS: {
+      return {
+        ...state,
+        loadedCollections: collectionsRepository.getCollections()
+      }
+    }
+
     case SET_PRESENTATION_WINDOW: {
       return {
         ...state,
@@ -82,18 +96,41 @@ export function appReducer(state, action) {
 
     case ADD_PRAISE_TO_COLLECTION: {
       const newSong = { title: action.payload.title, content: action.payload.content }
-      const collection = state.loadedCollections.find(c => c.name === action.payload.collectionName)
-      if (collection) {
-        collection.songs.push(newSong)
+      const existingCollection = state.loadedCollections.find(c => c.name === action.payload.collectionName)
+      if (existingCollection) {
+        const existingCollectionIndex = state.loadedCollections.indexOf(existingCollection)
+        const mutatedCollection = { ...existingCollection }
+        mutatedCollection.songs = [...mutatedCollection.songs, newSong]
+        const mutatedCollections = [
+          ...state.loadedCollections.slice(0, existingCollectionIndex),
+          mutatedCollection,
+          ...state.loadedCollections.slice(existingCollectionIndex)
+        ]
+
+        executeAsync(() => {
+          collectionsRepository.persistCollections(mutatedCollections)
+          publishMessage(COLLECTIONS_CHANGED)
+        })
+
         return {
           ...state,
-          loadedCollections: state.loadedCollections
+          loadedCollections: mutatedCollections
         }
       } else {
-        state.loaddedCollectins.push({
-          name: action.payload.collectionName,
-          songs: [newSong]
+        const mutatedCollections = [
+          ...state.loadedCollections,
+          { name: action.payload.collectionName, songs: [newSong] }
+        ]
+
+        executeAsync(() => {
+          collectionsRepository.persistCollections(mutatedCollections)
+          publishMessage(COLLECTIONS_CHANGED)
         })
+
+        return {
+          ...state,
+          loadedCollections: mutatedCollections
+        }
       }
     }
 

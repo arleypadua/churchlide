@@ -4,7 +4,6 @@
 
 .praise_queue__praise_entry {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   cursor: pointer;
@@ -23,6 +22,7 @@
 }
 
 .praise_queue__praise_entry h1 {
+  flex-grow: 1;
   font-size: 0.8em;
   font-weight: 400;
 }
@@ -34,6 +34,10 @@
 
 .praise_queue__praise_entry:hover i {
   visibility: visible;
+}
+
+.praise_queue__praise_entry > i:hover {
+  color: #5fc2f4;
 }
 
 .praise_queue__clean {

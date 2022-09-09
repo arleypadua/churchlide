@@ -4,10 +4,10 @@ import BibleSlideShow from '../components/BibleSlideShow/BibleSlideShow'
 import PraiseSlideShow from '../components/PraiseSlideShow/PraiseSlideShow'
 import EmptyStateSlide from '../components/EmptyStateSlide/EmptyStateSlide'
 import collections from '../data/collections'
-import { cleanupListener, NAVIGATE_ACTION, onMessage, SETTINGS_CHANGED } from '../pubsub/eventPublisher'
+import { cleanupListener, COLLECTIONS_CHANGED, NAVIGATE_ACTION, onMessage, SETTINGS_CHANGED } from '../pubsub/eventPublisher'
 import togglePresentationTheme from '../helpers/togglePresentationTheme'
 import { useAppContext } from '../AppContext'
-import { loadInitialSettings } from '../AppReducer'
+import { loadCollections, loadSettings } from '../AppReducer'
 
 function PraiseStage() {
   const { collectionName, praiseName } = useParams()
@@ -48,7 +48,10 @@ export default function Stage() {
       navigate(payload)
     }
     if (type === SETTINGS_CHANGED) {
-      dispatchApp(loadInitialSettings())
+      dispatchApp(loadSettings())
+    }
+    if (type === COLLECTIONS_CHANGED) {
+      dispatchApp(loadCollections())
     }
   }
 

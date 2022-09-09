@@ -3,13 +3,21 @@ import { NAVIGATE_ACTION, publishMessage } from '../../pubsub/eventPublisher'
 import { useAppContext } from '../../AppContext'
 import './PraiseQueue.css'
 import { removeAllFromQueue, removePraiseFromQueue, selectPraise } from './PraiseQueueReducer'
+import { useNavigate } from 'react-router-dom'
 
 function PraiseQueueEntry({ name, title, handlePraiseClick, handlePraiseDeleteClick }) {
+  const navigate = useNavigate()
+
+  const handleEditClick = () => {
+    navigate(`/add-praise/${name}/${title}`)
+  }
+
   return (
     <li className='praise_queue__praise_entry'
       onClick={() => handlePraiseClick(name, title)}
     >
       <h1>{title}</h1>
+      <i className="ri-pencil-fill" onClick={() => handleEditClick(name, title)}></i>
       <i className="ri-close-fill" onClick={() => handlePraiseDeleteClick(name, title)}></i>
     </li>
   )

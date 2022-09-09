@@ -11,7 +11,7 @@ import Bible from "./pages/Bible";
 import Settings from "./pages/Settings";
 
 import AppContext from "./AppContext";
-import { appInitialState, appReducer, loadInitialSettings } from "./AppReducer";
+import { appInitialState, appReducer, loadSettings, loadCollections } from "./AppReducer";
 import { praiseQueueInitialState, praiseQueueReducer } from "./components/PraiseQueue/PraiseQueueReducer";
 
 function App() {
@@ -25,7 +25,8 @@ function App() {
 
   useEffect(() => {
     const [_, dispatchApp] = praiseQueueProviderState.appReducer
-    dispatchApp(loadInitialSettings())
+    dispatchApp(loadSettings())
+    dispatchApp(loadCollections())
   }, [])
 
   return (
@@ -35,6 +36,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add-praise" element={<AddPraise />} />
+          <Route path="/add-praise/:collectionName/:praiseName" element={<AddPraise />} />
           <Route path="/bible" element={<Bible />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/settings/sync/microsoft" element={<Settings />} />

@@ -1,16 +1,18 @@
 import { settingsInitialState } from "../AppReducer"
 
-const SETTINGS_LEY = 'churchlide.settings'
+const SETTINGS_KEY = 'churchlide.settings'
 
-export default {
+const settingsRepository = {
   persistSettings: (settings) => {
-    localStorage.setItem(SETTINGS_LEY, JSON.stringify(settings ?? settingsInitialState))
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings ?? settingsInitialState))
   },
 
-  getSettings: (settings) => {
-    const stored = localStorage.getItem(SETTINGS_LEY)
+  getSettings: () => {
+    const stored = localStorage.getItem(SETTINGS_KEY)
     if (!stored) return settingsInitialState
 
     return JSON.parse(stored)
   }
 }
+
+export default settingsRepository
