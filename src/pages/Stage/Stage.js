@@ -15,7 +15,7 @@ function PraiseStage() {
 
   useEffect(() => {
     const praise = app.loadedCollections
-      .find(c => c.name.includes(collectionName))?.songs
+      .find(c => c.name === collectionName)?.songs
       .find(s => s.title.includes(praiseName))
 
     console.log(praise)

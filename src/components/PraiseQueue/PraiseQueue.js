@@ -9,7 +9,7 @@ function PraiseQueueEntry({ name, title, handlePraiseClick, handlePraiseDeleteCl
   const navigate = useNavigate()
 
   const handleEditClick = () => {
-    navigate(`/edit-praise/${name}/${title}`)
+    navigate(`/edit-praise/${encodeURIComponent(name)}/${encodeURIComponent(title)}`)
   }
 
   return (
@@ -27,7 +27,7 @@ export default function PraiseQueue() {
   const { praiseQueueReducer: [praiseQueue, dispatchPraiseQueue] } = useAppContext()
 
   const handlePraiseClick = (collection, praiseTitle) => {
-    const praiseUrl = `/stage/praise/${collection}/${praiseTitle}`
+    const praiseUrl = `/stage/praise/${encodeURIComponent(collection)}/${encodeURIComponent(praiseTitle)}`
     publishMessage(NAVIGATE_ACTION, praiseUrl)
 
     dispatchPraiseQueue(selectPraise(collection, praiseTitle))
