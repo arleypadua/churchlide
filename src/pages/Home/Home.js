@@ -1,8 +1,8 @@
 import React from "react"
-import CurrentPraise from "../components/CurrentPraise/CurrentPraise"
-import PraiseQueue from "../components/PraiseQueue/PraiseQueue"
-import PraiseSearch from "../components/PraiseSearch/PraiseSearch"
-import SlideControls from "../components/SlideControls/SlideControls"
+import CurrentPraise from "../../components/CurrentPraise/CurrentPraise"
+import PraiseQueue from "../../components/PraiseQueue/PraiseQueue"
+import PraiseSearch from "../../components/PraiseSearch/PraiseSearch"
+import SlideControls from "../../components/SlideControls/SlideControls"
 import "./Home.css"
 
 export default function Home() {

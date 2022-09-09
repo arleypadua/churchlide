@@ -1,8 +1,8 @@
 import './AddPraise.css'
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { useAppContext } from '../AppContext'
-import { addPraiseToCollection } from '../AppReducer'
+import { useAppContext } from '../../AppContext'
+import { addPraiseToCollection } from '../../AppReducer'
 import { useNavigate } from 'react-router-dom'
 
 export default function AddPraise() {

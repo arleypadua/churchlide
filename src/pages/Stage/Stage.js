@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import BibleSlideShow from '../components/BibleSlideShow/BibleSlideShow'
-import PraiseSlideShow from '../components/PraiseSlideShow/PraiseSlideShow'
-import EmptyStateSlide from '../components/EmptyStateSlide/EmptyStateSlide'
-import { cleanupListener, COLLECTIONS_CHANGED, NAVIGATE_ACTION, onMessage, SETTINGS_CHANGED } from '../pubsub/eventPublisher'
-import togglePresentationTheme from '../helpers/togglePresentationTheme'
-import { useAppContext } from '../AppContext'
-import { loadCollections, loadSettings } from '../AppReducer'
+import BibleSlideShow from '../../components/BibleSlideShow/BibleSlideShow'
+import PraiseSlideShow from '../../components/PraiseSlideShow/PraiseSlideShow'
+import EmptyStateSlide from '../../components/EmptyStateSlide/EmptyStateSlide'
+import { cleanupListener, COLLECTIONS_CHANGED, NAVIGATE_ACTION, onMessage, SETTINGS_CHANGED } from '../../pubsub/eventPublisher'
+import togglePresentationTheme from '../../helpers/togglePresentationTheme'
+import { useAppContext } from '../../AppContext'
+import { loadCollections, loadSettings } from '../../AppReducer'
 
 function PraiseStage() {
   const { collectionName, praiseName } = useParams()

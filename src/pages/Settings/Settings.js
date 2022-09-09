@@ -1,6 +1,6 @@
 import React from 'react'
-import PresentationThemeSettings from '../components/settings/PresentationThemeSettings/PresentationThemeSettings'
-import SyncOneDrive from '../components/settings/SyncOneDrive/SyncOneDrive'
+import PresentationThemeSettings from '../../components/settings/PresentationThemeSettings/PresentationThemeSettings'
+import SyncOneDrive from '../../components/settings/SyncOneDrive/SyncOneDrive'
 import './Settings.css'
 
 export default function Settings() {

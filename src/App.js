@@ -3,12 +3,12 @@ import 'remixicon/fonts/remixicon.css'
 import { useReducer, useEffect } from "react"
 import { Route, Routes, useLocation } from "react-router-dom";
 
-import Home from "./pages/Home";
-import AddPraise from "./pages/AddPraise";
-import Stage from "./pages/Stage";
+import Home from "./pages/Home/Home";
+import AddPraise from "./pages/AddPraise/AddPraise";
+import Stage from "./pages/Stage/Stage";
 import SideBar from "./components/SideBar/SideBar";
-import Bible from "./pages/Bible";
-import Settings from "./pages/Settings";
+import Bible from "./pages/Bible/Bible";
+import Settings from "./pages/Settings/Settings";
 
 import AppContext from "./AppContext";
 import { appInitialState, appReducer, loadSettings, loadCollections } from "./AppReducer";

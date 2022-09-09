@@ -1,9 +1,9 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import SlideControls from '../components/SlideControls/SlideControls'
-import bible from '../data/bible'
-import { NAVIGATE_ACTION, publishMessage } from '../pubsub/eventPublisher'
+import SlideControls from '../../components/SlideControls/SlideControls'
+import bible from '../../data/bible'
+import { NAVIGATE_ACTION, publishMessage } from '../../pubsub/eventPublisher'
 import './Bible.css'
 
 export default function Bible() {
