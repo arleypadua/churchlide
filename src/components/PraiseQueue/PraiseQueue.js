@@ -8,17 +8,34 @@ import { useNavigate } from 'react-router-dom'
 function PraiseQueueEntry({ name, title, handlePraiseClick, handlePraiseDeleteClick }) {
   const navigate = useNavigate()
 
-  const handleEditClick = () => {
+  const handleEditClick = (e) => {
+    e.preventDefault();
     navigate(`/edit-praise/${encodeURIComponent(name)}/${encodeURIComponent(title)}`)
   }
 
+  const handleDeleteClick = (e) => {
+    e.preventDefault()
+    handlePraiseDeleteClick?.(name, title)
+  }
+
+  const handleEntryClick = (e) => {
+    const { nativeEvent: { target: { id } } } = e;
+
+    if (id === 'praise_entry_edit') return handleEditClick(e)
+    if (id === 'praise_entry_delete') return handleDeleteClick(e)
+
+    handlePraiseClick?.(name, title)
+  }
+
   return (
-    <li className='praise_queue__praise_entry'
-      onClick={() => handlePraiseClick(name, title)}
+    <li 
+      id="praise_queue_entry"
+      className='praise_queue__praise_entry'
+      onClick={handleEntryClick}
     >
       <h1>{title}</h1>
-      <i className="ri-pencil-fill" onClick={() => handleEditClick(name, title)}></i>
-      <i className="ri-close-fill" onClick={() => handlePraiseDeleteClick(name, title)}></i>
+      <i id="praise_entry_edit" className="ri-pencil-fill"></i>
+      <i id="praise_entry_delete" className="ri-close-fill"></i>
     </li>
   )
 }
