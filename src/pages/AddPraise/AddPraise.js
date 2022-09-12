@@ -5,6 +5,7 @@ import { useAppContext } from '../../AppContext'
 import { addPraiseToCollection } from '../../AppReducer'
 import { useNavigate } from 'react-router-dom'
 import CollectionNames from '../../components/CollectionNames/CollectionNames'
+import PraiseEditor from '../../components/PraiseEditor/PraiseEditor'
 
 export default function AddPraise() {
   const navigate = useNavigate()
@@ -49,8 +50,8 @@ export default function AddPraise() {
           placeholder="Nome da Coletânea"
         />
 
-        { collectionNameFocused && <CollectionNames onNameClicked={handleCollectionNameClicked} /> }
-        
+        {collectionNameFocused && <CollectionNames onNameClicked={handleCollectionNameClicked} />}
+
         <input
           className='input input_full_width'
           type="text"
@@ -59,14 +60,11 @@ export default function AddPraise() {
           placeholder="Título"
         />
 
-        <textarea
-          className='text_area input_full_width tall'
-          cols="30"
-          rows="10"
-          placeholder='Conteúdo'
+        <PraiseEditor
           value={praiseContent}
           onChange={(e) => setPraiseContent(e.target.value)}
-        ></textarea>
+        />
+
         <div>
           <button
             onClick={addClick}

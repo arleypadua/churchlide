@@ -84,6 +84,7 @@ export default function AddPraise() {
           placeholder='Conteúdo'
           value={editingPraiseContent}
           onChange={(e) => setEditingPraiseContent(e.target.value)}
+          wrap="off"
         ></textarea>
         <div>
           <button
