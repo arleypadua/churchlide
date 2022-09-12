@@ -19,7 +19,7 @@ function PraiseQueueEntry({ name, title, handlePraiseClick, handlePraiseDeleteCl
   }
 
   const handleEntryClick = (e) => {
-    const { nativeEvent: { target: { id } } } = e;
+    const { target: { id } } = e;
 
     if (id === 'praise_entry_edit') return handleEditClick(e)
     if (id === 'praise_entry_delete') return handleDeleteClick(e)

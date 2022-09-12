@@ -3,6 +3,7 @@ import { LINE_BREAK_REGEX } from '../../helpers/buildVerseFromContent';
 import { useAppContext } from '../../AppContext';
 import { addPraiseToQueue } from '../PraiseQueue/PraiseQueueReducer';
 import './PraiseSearch.css'
+import { useNavigate } from 'react-router-dom';
 
 function sanitize(content) {
   if (!content) return content
@@ -21,11 +22,27 @@ function sanitize(content) {
 }
 
 function PraiseEntry({ name, title, content, handlePraiseClick }) {
+  const navigate = useNavigate()
+
+  const handleEditClick = (e) => {
+    navigate(`/edit-praise/${encodeURIComponent(name)}/${encodeURIComponent(title)}`)
+  }
+
+  const handleEntryClick = (e) => {
+    const { target: { id } } = e;
+    if (id === 'praise_entry_edit') return handleEditClick(e)
+
+    handlePraiseClick?.(e)
+  }
+
   return (
     <li className='praise_search__praise_entry'
-      onClick={() => handlePraiseClick(name, title)}
+      onClick={handleEntryClick}
     >
-      <h1>{title}</h1>
+      <div className='praise_search__praise_entry__title_container'>
+        <h1>{title}</h1>
+        <i id="praise_entry_edit" className="ri-pencil-fill"></i>
+      </div>
       <p>{sanitize(content)}</p>
     </li>
   )

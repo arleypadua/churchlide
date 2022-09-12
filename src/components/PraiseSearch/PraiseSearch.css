@@ -29,3 +29,25 @@ div.praise_search > section > h1 {
   font-size: 0.65em;
   text-align: justify;
 }
+
+.praise_search__praise_entry__title_container {
+  display: flex;
+  align-items: center;
+}
+
+.praise_search__praise_entry__title_container h1 {
+  flex-grow: 1;
+}
+
+.praise_search__praise_entry__title_container i {
+  padding: 3px;
+  visibility: hidden;
+}
+
+.praise_search__praise_entry__title_container > i:hover {
+  color: #5fc2f4;
+}
+
+.praise_search__praise_entry:hover i {
+  visibility: visible;
+}
