@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react'
 import { useAppContext } from '../../AppContext'
 import { addPraiseToCollection } from '../../AppReducer'
 import { useNavigate } from 'react-router-dom'
+import CollectionNames from '../../components/CollectionNames/CollectionNames'
 
 export default function AddPraise() {
   const navigate = useNavigate()
   const { appReducer: [app, dispatchApp] } = useAppContext()
   const [collectionName, setCollectionName] = useState('')
+  const [collectionNameFocused, setCollectionNameFocused] = useState(true)
   const [praiseTitle, setPraiseTitle] = useState('')
   const [praiseContent, setPraiseContent] = useState('')
   const [addDisabled, setAddDisabled] = useState(true)
@@ -25,6 +27,14 @@ export default function AddPraise() {
     navigate('/')
   }
 
+  const handleCollectionNameClicked = (collectionName) => {
+    setCollectionName(collectionName)
+  }
+
+  const handleCollectionNameBlur = () => {
+    setTimeout(() => setCollectionNameFocused(false), 100)
+  }
+
   return (
     <div className='add_praise'>
       <div className='add_praise__panel'>
@@ -34,9 +44,13 @@ export default function AddPraise() {
           type="text"
           value={collectionName}
           onChange={(e) => setCollectionName(e.target.value)}
+          onFocus={() => setCollectionNameFocused(true)}
+          onBlur={handleCollectionNameBlur}
           placeholder="Nome da Coletânea"
         />
 
+        { collectionNameFocused && <CollectionNames onNameClicked={handleCollectionNameClicked} /> }
+        
         <input
           className='input input_full_width'
           type="text"

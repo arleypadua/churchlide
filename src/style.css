@@ -56,17 +56,30 @@ body {
   padding: 10px;
   margin: 0px 5px;
   border-radius: 5px;
-  border: 1px solid #023047;
+  border: 0px solid;
   color: #023047;
   vertical-align: middle;
 }
 
+button.button {
+  font-family : inherit;
+  font-size: 1em;
+}
+
 .button-primary {
   background-color: #a8c0c5;
-  transition: background-color ease-in-out 0.5s, border ease-in-out 0.5s;
+  transition: background-color ease-in-out 0.5s
 }
 
 .button-primary:hover {
   background-color: #d5e5e5;
-  border: 1px solid #219ebc;
+}
+
+.button-light {
+  background-color: #d0dee0;
+  transition: background-color ease-in-out 0.5s
+}
+
+.button-light:hover {
+  background-color: #e2edef;
 }
