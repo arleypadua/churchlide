@@ -5,6 +5,7 @@ import { useAppContext } from '../../AppContext'
 import { useNavigate, useParams } from 'react-router-dom'
 import { removePraise, updatePraise } from '../../AppReducer'
 import Modal from '../../components/Modal/Modal'
+import PraiseEditor from '../../components/PraiseEditor/PraiseEditor'
 
 export default function AddPraise() {
   const navigate = useNavigate()
@@ -77,15 +78,10 @@ export default function AddPraise() {
           placeholder="Título"
         />
 
-        <textarea
-          className='text_area input_full_width tall'
-          cols="30"
-          rows="10"
-          placeholder='Conteúdo'
+        <PraiseEditor
           value={editingPraiseContent}
           onChange={(e) => setEditingPraiseContent(e.target.value)}
-          wrap="off"
-        ></textarea>
+        />
         <div>
           <button
             onClick={editClick}

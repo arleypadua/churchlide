@@ -1,0 +1,28 @@
+.praise_editor > textarea {
+  margin-top: 0px;
+  border-top: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  outline: none;
+  box-shadow: none;
+}
+
+.praise_editor__edit_bar {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 5px;
+  border: #023047 solid 1px;
+  border-bottom: #0230472c solid 1px;;
+}
+
+.praise_editor__edit_bar button {
+  border: none;
+  background-color: transparent;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  margin-right: 3px;
+}
+
+.praise_editor__edit_bar button:hover {
+  background-color: #f7f7f7;
+}
