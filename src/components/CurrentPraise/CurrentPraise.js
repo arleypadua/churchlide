@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../../AppContext'
+import PraiseSlideShowPreview from '../PraiseSlideShowPreview/PraiseSlideShowPreview'
 import './CurrentPraise.css'
 
 export default function CurrentPraise() {
   const [currentPraise, setCurrentPraise] = useState()
-  const { praiseQueue } = useAppContext()
+  const { praiseQueueReducer: [praiseQueue, dispatchPraiseQueue] } = useAppContext()
   const { title, content } = praiseQueue?.current?.praise ?? {}
 
   useEffect(() => {
@@ -16,16 +17,9 @@ export default function CurrentPraise() {
     }
   }, [title, content])
 
-  const handleContentChange = event => {
-    setCurrentPraise((prev) => ({ ...prev, content: event.target.value }));
-  };
-
   return currentPraise && (
     <>
-      <textarea 
-        value={currentPraise.content}
-        onChange={handleContentChange}
-      ></textarea>
+      <PraiseSlideShowPreview praise={currentPraise} />
     </>
   )
 }

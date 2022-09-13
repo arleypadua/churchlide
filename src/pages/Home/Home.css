@@ -1,6 +1,7 @@
 .home {
   display: flex;
   padding: 10px;
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -9,7 +10,6 @@
 }
 
 .home .home__praise-search {
-  flex-grow: 1;
   min-width: 200px;
   max-width: 400px;
   height: 100vh;
@@ -18,11 +18,12 @@
 }
 
 .home .home__praise-list {
-  flex-grow: 1;
-  width: 350px;
+  min-width: 350px;
+  max-width: 350px;
   height: 100%;
 }
 
 .home .home__current-praise {
-  flex-grow: 2;
+  flex-grow: 1;
+  height: 100%;
 }
