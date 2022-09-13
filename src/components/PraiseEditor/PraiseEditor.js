@@ -1,8 +1,14 @@
 import './PraiseEditor.css'
 import React, { useRef } from 'react'
+import { useState } from 'react'
+import buildVerseFromContent from '../../helpers/buildVerseFromContent'
 
 export default function PraiseEditor({ value, onChange, placeholder }) {
   const contentRef = useRef(null)
+  const [showPreview, setShowPreview] = useState(false)
+  const preview = buildVerseFromContent(value)
+    .map(v => `<p>${v.lines}</p>`)
+    .join('')
 
   const handleAddBis = () => {
     const selection = window.getSelection().toString()
@@ -37,8 +43,12 @@ export default function PraiseEditor({ value, onChange, placeholder }) {
     }
   }
 
+  const togglePreview = () => {
+    setShowPreview(!showPreview)
+  }
+
   return (
-    <div className="praise_editor">
+    <div className="praise_editor tall">
       <div className='praise_editor__edit_bar'>
         <button
           className="praise_editor__button"
@@ -64,17 +74,25 @@ export default function PraiseEditor({ value, onChange, placeholder }) {
           className="praise_editor__button"
           onClick={() => handleAddRepeat(4)}
         >4x</button>
+
+        <button
+          className="praise_editor__button right"
+          onClick={togglePreview}
+        >Preview</button>
       </div>
-      <textarea
-        className='text_area input_full_width tall'
-        cols="30"
-        rows="10"
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        wrap="off"
-        ref={contentRef}
-      ></textarea>
+      <div className="praise_editor__display_area">
+        <textarea
+          className='text_area input_full_width'
+          cols="30"
+          rows="10"
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          wrap="off"
+          ref={contentRef}
+        ></textarea>
+        { showPreview && <div className='praise_editor__preview' dangerouslySetInnerHTML={{ __html: preview }}></div> }
+      </div>
     </div>
   )
 }

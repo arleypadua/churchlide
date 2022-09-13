@@ -69,7 +69,8 @@
   content: "bis";
   position: absolute;
   left: calc(100% + 30px);
-  top: calc(43%);
+  top: 50%;
+  transform: translateY(-50%);
 
   font-style: italic;
   font-size: 2.5vw;
@@ -80,7 +81,8 @@
   content: "bis no final";
   position: absolute;
   left: calc(100% + 30px);
-  top: calc(43%);
+  top: 50%;
+  transform: translateY(-50%);
 
   font-style: italic;
   font-size: 2.5vw;
@@ -91,7 +93,8 @@
   content: "2x";
   position: absolute;
   left: calc(100% + 30px);
-  top: calc(43%);
+  top: 50%;
+  transform: translateY(-50%);
 
   font-style: italic;
   font-size: 2.5vw;
@@ -102,7 +105,8 @@
   content: "3x";
   position: absolute;
   left: calc(100% + 30px);
-  top: calc(43%);
+  top: 50%;
+  transform: translateY(-50%);
 
   font-style: italic;
   font-size: 2.5vw;
@@ -113,7 +117,8 @@
   content: "4x";
   position: absolute;
   left: calc(100% + 30px);
-  top: calc(43%);
+  top: 50%;
+  transform: translateY(-50%);
 
   font-style: italic;
   font-size: 2.5vw;
@@ -124,7 +129,8 @@
   content: "5x";
   position: absolute;
   left: calc(100% + 30px);
-  top: calc(43%);
+  top: 50%;
+  transform: translateY(-50%);
 
   font-style: italic;
   font-size: 2.5vw;
@@ -135,7 +141,8 @@
   content: "6x";
   position: absolute;
   left: calc(100% + 30px);
-  top: calc(43%);
+  top: 50%;
+  transform: translateY(-50%);
 
   font-style: italic;
   font-size: 2.5vw;

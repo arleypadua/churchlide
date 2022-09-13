@@ -1,18 +1,26 @@
-.praise_editor > textarea {
+.praise_editor {
+  border: #023047 solid 1px;
+  border-radius: 5px;
+}
+
+.praise_editor textarea {
+  height: 100%;
+  border: none;
   margin-top: 0px;
   border-top: 0px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
+  border-bottom: 0px;
   outline: none;
   box-shadow: none;
+  width: unset;
+  resize: none;
 }
 
 .praise_editor__edit_bar {
+  display: flex;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding: 5px;
-  border: #023047 solid 1px;
-  border-bottom: #0230472c solid 1px;;
+  border-bottom: #0230472c solid 1px;
 }
 
 .praise_editor__edit_bar button {
@@ -23,6 +31,69 @@
   margin-right: 3px;
 }
 
+.praise_editor__edit_bar button.right {
+  margin-left: auto;
+}
+
 .praise_editor__edit_bar button:hover {
   background-color: #f7f7f7;
+}
+
+.praise_editor__display_area {
+  display: flex;
+  height: 35vh;
+}
+
+.praise_editor__display_area textarea {
+  min-width: 60%;
+}
+
+.praise_editor__preview {
+  border-left: #0230472c solid 1px;
+  padding-left: 10px;
+  min-width: 40%;
+  white-space: nowrap;
+  overflow: auto;
+}
+
+.praise_editor__preview .chave-bis,
+.praise_editor__preview .chave-bis-small,
+.praise_editor__preview .chave-bis-no-final,
+.praise_editor__preview .chave-2x,
+.praise_editor__preview .chave-3x,
+.praise_editor__preview .chave-4x,
+.praise_editor__preview .chave-5x,
+.praise_editor__preview .chave-6x,
+.praise_editor__preview .chave-2x-small,
+.praise_editor__preview .chave-3x-small,
+.praise_editor__preview .chave-4x-small,
+.praise_editor__preview .chave-5x-small,
+.praise_editor__preview .chave-6x-small {
+  display: inline-block;
+  color: inherit;
+  border-color: #023047;
+}
+
+.praise_editor__preview .chave-bis::after,
+.praise_editor__preview .chave-bis-small::after,
+.praise_editor__preview .chave-bis-no-final::after,
+.praise_editor__preview .chave-2x::after,
+.praise_editor__preview .chave-3x::after,
+.praise_editor__preview .chave-4x::after,
+.praise_editor__preview .chave-5x::after,
+.praise_editor__preview .chave-6x::after,
+.praise_editor__preview .chave-2x-small::after,
+.praise_editor__preview .chave-3x-small::after,
+.praise_editor__preview .chave-4x-small::after,
+.praise_editor__preview .chave-5x-small::after,
+.praise_editor__preview .chave-6x-small::after {
+  font-size: 1em;
+  color: inherit;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.praise_editor__preview font[color=yellow] {
+  color: rgb(145, 145, 0);
 }
