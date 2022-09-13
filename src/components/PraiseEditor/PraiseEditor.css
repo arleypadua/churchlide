@@ -46,6 +46,7 @@
 
 .praise_editor__display_area textarea {
   min-width: 60%;
+  flex-grow: 1;
 }
 
 .praise_editor__preview {
@@ -54,6 +55,38 @@
   min-width: 40%;
   white-space: nowrap;
   overflow: auto;
+}
+
+.praise_editor__preview hr {
+  border: none;
+  position: relative;
+  width: 80%;
+  height: 10px;
+}
+
+.praise_editor__preview hr::before {
+  z-index: 1;
+  background-color: white;
+  padding: 5px;
+  position: absolute;
+  content: "slide";
+  font-size: 0.6em;
+  color: #023047;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.praise_editor__preview hr::after {
+  z-index: 0;
+  position: absolute;
+  content: " ";
+  border-top: #02304754 solid 1px;
+  width: 80%;
+  height: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .praise_editor__preview .chave-bis,

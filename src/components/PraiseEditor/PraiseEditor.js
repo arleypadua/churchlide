@@ -8,7 +8,7 @@ export default function PraiseEditor({ value, onChange, placeholder }) {
   const [showPreview, setShowPreview] = useState(false)
   const preview = buildVerseFromContent(value)
     .map(v => `<p>${v.lines}</p>`)
-    .join('')
+    .join('<hr />')
 
   const handleAddBis = () => {
     const selection = window.getSelection().toString()
