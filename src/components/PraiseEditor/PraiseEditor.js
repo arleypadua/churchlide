@@ -48,7 +48,7 @@ export default function PraiseEditor({ value, onChange, placeholder }) {
   }
 
   return (
-    <div className="praise_editor tall">
+    <div className="praise_editor">
       <div className='praise_editor__edit_bar'>
         <button
           className="praise_editor__button"

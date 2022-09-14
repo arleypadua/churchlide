@@ -2,11 +2,11 @@ import './PraiseSlideShowPreview.css'
 import React, { useState } from 'react'
 import buildVerseFromContent from '../../helpers/buildVerseFromContent'
 import { useEffect } from 'react'
-import { cleanupListener, NEXT_ACTION, onMessage, PREVIOUS_ACTION } from '../../pubsub/eventPublisher'
+import { cleanupListener, NAVIGATE_ACTION, NEXT_ACTION, onMessage, PREVIOUS_ACTION, publishMessage } from '../../pubsub/eventPublisher'
 
 export default function PraiseSlideShowPreview({ praise }) {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const { title, content } = praise
+  const { collection, title, content } = praise
   const preview = buildVerseFromContent(content)
     .map(v => `${v.lines}`)
 
@@ -38,9 +38,17 @@ export default function PraiseSlideShowPreview({ praise }) {
   }
 
   useEffect(() => {
+    setCurrentSlide(0)
     onMessage(handleMessage)
     return () => cleanupListener(handleMessage)
   }, [title, content])
+
+  const handleVerseClick = (slideIndex) => {
+    setCurrentSlide(slideIndex)
+    
+    const praiseUrl = `/stage/praise/${encodeURIComponent(collection)}/${encodeURIComponent(title)}/${slideIndex}`
+    publishMessage(NAVIGATE_ACTION, praiseUrl)
+  }
 
   return (
     <div className='praise_slide_show_preview'>
@@ -50,6 +58,7 @@ export default function PraiseSlideShowPreview({ praise }) {
           className={`praise_slide_show_preview__slide ${currentSlide === index ? 'active' : ''}`}
           key={index}
           dangerouslySetInnerHTML={{ __html: p }}
+          onClick={() => handleVerseClick(index)}
         ></p>
       ))}
     </div>

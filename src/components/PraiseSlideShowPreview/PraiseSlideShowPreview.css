@@ -1,7 +1,7 @@
 .praise_slide_show_preview {
   display: flex;
   flex-direction: column;
-  flex: 0 0 100%
+  align-items: center;
 }
 
 .praise_slide_show_preview h1 {
@@ -9,6 +9,7 @@
 }
 
 .praise_slide_show_preview__slide {
+  width: 350px;
   cursor: pointer;
   padding: 15px 35px 15px 15px;
   border: transparent solid 5px;

@@ -9,7 +9,7 @@ import { useAppContext } from '../../AppContext'
 import { loadCollections, loadSettings } from '../../AppReducer'
 
 function PraiseStage() {
-  const { collectionName, praiseName } = useParams()
+  const { collectionName, praiseName, slideIndex } = useParams()
   const { appReducer: [app, dispatchApp] } = useAppContext()
   const [praise, setPraise] = useState(undefined)
 
@@ -27,7 +27,7 @@ function PraiseStage() {
     <>
       {
         praise
-          ? <PraiseSlideShow praise={praise} />
+          ? <PraiseSlideShow praise={praise} slideIndex={slideIndex ?? 0} />
           : <EmptyStateSlide />
       }
     </>

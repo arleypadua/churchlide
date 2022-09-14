@@ -6,16 +6,17 @@ import './CurrentPraise.css'
 export default function CurrentPraise() {
   const [currentPraise, setCurrentPraise] = useState()
   const { praiseQueueReducer: [praiseQueue, dispatchPraiseQueue] } = useAppContext()
-  const { title, content } = praiseQueue?.current?.praise ?? {}
+  const { collection, praise: { title, content } } = praiseQueue?.current ?? {}
 
   useEffect(() => {
     if (title && content) {
       setCurrentPraise({
+        collection,
         title,
         content
       })
     }
-  }, [title, content])
+  }, [collection, title, content])
 
   return currentPraise && (
     <>

@@ -76,7 +76,7 @@ export default function PraiseSearch() {
     <>
       <div className='praise_search'>
         <input
-          className='input input_full_width'
+          className='input input_full_width bg-white'
           type="text"
           name="searchText"
           placeholder='Nome do Louvor'

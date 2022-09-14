@@ -1,25 +1,25 @@
-const channel = new BroadcastChannel('presentr-topic');
+const outgoingChannel = new BroadcastChannel('presentr-topic');
+const incomingChannel = new BroadcastChannel('presentr-topic');
 
 function publishMessage(type, payload) {
-    channel.postMessage({
-        type,
-        payload
-    })
+  outgoingChannel.postMessage({
+    type,
+    payload
+  })
 }
 
 function onMessage(callback) {
-    channel.addEventListener('message', callback)
+  incomingChannel.addEventListener('message', callback)
 }
 
 function cleanupListener(callback) {
-    channel.removeEventListener('message', callback)
+  incomingChannel.removeEventListener('message', callback)
 }
 
 export {
-    channel,
-    publishMessage,
-    onMessage,
-    cleanupListener,
+  publishMessage,
+  onMessage,
+  cleanupListener,
 }
 
 export const NEXT_ACTION = 'next'

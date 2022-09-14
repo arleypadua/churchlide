@@ -3,7 +3,7 @@ import buildVerseFromContent from "../../helpers/buildVerseFromContent";
 import { onMessage, cleanupListener, NEXT_ACTION, PREVIOUS_ACTION } from '../../pubsub/eventPublisher';
 import './PraiseSlideShow.css'
 
-function PraiseSlideShow({ praise }) {
+function PraiseSlideShow({ praise, slideIndex = 0 }) {
   const { title, content } = praise;
 
   const [currentPage, setCurrentPage] = useState(0)
@@ -13,9 +13,7 @@ function PraiseSlideShow({ praise }) {
   function previousSlide() {
     setCurrentPage((prev) => {
       const willSetTo = prev - 1
-      console.log('trying to set to: ', willSetTo)
       if (willSetTo < 0) return prev
-      console.log('setting to: ', willSetTo)
       return willSetTo
     })
   }
@@ -23,9 +21,7 @@ function PraiseSlideShow({ praise }) {
   function nextSlide() {
     setCurrentPage((prev) => {
       const willSetTo = prev + 1
-      console.log('trying to set to: ', willSetTo)
       if (willSetTo > verse.length - 1) return prev
-      console.log('setting to: ', willSetTo)
       return willSetTo
     })
   }
@@ -50,6 +46,10 @@ function PraiseSlideShow({ praise }) {
     return () => cleanupListener(handleMessage)
   }, [title])
 
+  useEffect(() => {
+    setCurrentPage(parseInt(slideIndex))
+  }, [slideIndex])
+
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowLeft') {
       previousSlide()
@@ -58,6 +58,7 @@ function PraiseSlideShow({ praise }) {
     }
   }
 
+  console.log(currentPage)
   return (
     <div ref={slideFocusRef} tabIndex={-1} onKeyDown={handleKeyDown} className="slide_show">
       <h1>{title}</h1>

@@ -96,7 +96,7 @@ export default function Bible() {
         <select
           value={selectedVersionKey}
           onChange={handleChangeVersion}
-          className="select"
+          className="select bg-white"
           placeholder='Versão'
         >
           {
@@ -110,7 +110,7 @@ export default function Bible() {
         <select
           value={selectedBook}
           onChange={handleChangeBook}
-          className="select"
+          className="select bg-white"
           placeholder='Livro'
         >
           {
@@ -124,7 +124,7 @@ export default function Bible() {
         <select
           value={selectedChapter}
           onChange={handleChangeChapter}
-          className="select"
+          className="select bg-white"
           placeholder='Capítulo'
         >
           {
@@ -138,7 +138,7 @@ export default function Bible() {
         <select
           value={selectedVerse}
           onChange={handleChangeVerse}
-          className="select"
+          className="select bg-white"
           placeholder='Versículo'
         >
           {
