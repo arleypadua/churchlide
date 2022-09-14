@@ -3,10 +3,13 @@ import React, { useState } from 'react'
 import buildVerseFromContent from '../../helpers/buildVerseFromContent'
 import { useEffect } from 'react'
 import { cleanupListener, NAVIGATE_ACTION, NEXT_ACTION, onMessage, PREVIOUS_ACTION, publishMessage } from '../../pubsub/eventPublisher'
+import { useAppContext } from '../../AppContext'
+import { changeCurrentSelectedSlide } from '../PraiseQueue/PraiseQueueReducer'
 
 export default function PraiseSlideShowPreview({ praise }) {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const { collection, title, content } = praise
+  const { collection, title, content, selectedSlideIndex } = praise
+  const { praiseQueueReducer: [_, dispatchPraiseQueue] } = useAppContext()
+  const [currentSlide, setCurrentSlide] = useState(selectedSlideIndex)
   const preview = buildVerseFromContent(content)
     .map(v => `${v.lines}`)
 
@@ -38,14 +41,16 @@ export default function PraiseSlideShowPreview({ praise }) {
   }
 
   useEffect(() => {
-    setCurrentSlide(0)
     onMessage(handleMessage)
     return () => cleanupListener(handleMessage)
   }, [title, content])
 
+  useEffect(() => {
+    setCurrentSlide(selectedSlideIndex)
+  }, [selectedSlideIndex])
+
   const handleVerseClick = (slideIndex) => {
-    setCurrentSlide(slideIndex)
-    
+    dispatchPraiseQueue(changeCurrentSelectedSlide(slideIndex))
     const praiseUrl = `/stage/praise/${encodeURIComponent(collection)}/${encodeURIComponent(title)}/${slideIndex}`
     publishMessage(NAVIGATE_ACTION, praiseUrl)
   }

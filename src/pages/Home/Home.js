@@ -11,7 +11,9 @@ export default function Home() {
       <div className="home__praise-search"><PraiseSearch /></div>
       <div className="home__praise-list"><PraiseQueue /></div>
       <div className="home__current-praise">
-        <SlideControls />
+        <div className="home__slide_controls">
+          <SlideControls />
+        </div>
         <CurrentPraise />
       </div>
     </main>
