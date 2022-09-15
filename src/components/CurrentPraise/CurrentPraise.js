@@ -6,7 +6,7 @@ import './CurrentPraise.css'
 export default function CurrentPraise() {
   const [currentPraise, setCurrentPraise] = useState()
   const { praiseQueueReducer: [praiseQueue, dispatchPraiseQueue] } = useAppContext()
-  const { collection, praise: { title, content }, selectedSlideIndex } = praiseQueue?.current ?? {}
+  const { collection, praise: { title, content }, selectedSlideIndex } = praiseQueue?.current ?? { praise: {} }
 
   useEffect(() => {
     if (title && content) {
