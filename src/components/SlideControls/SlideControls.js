@@ -23,7 +23,7 @@ export default function SlideControls({ onPrevious, onNext }) {
   const handleOpenPresentation = () => {
     const closed = app?.presentationWindow?.closed ?? true
     if (closed) {
-      const newWindow = window.open('/stage/empty', '_brank', 'width=1024,height=768')
+      const newWindow = window.open(process.env.REACT_APP_STAGE_PATH, '_brank', 'width=1024,height=768')
       dispatchApp(setPresentationWindow(newWindow))
     } else {
       app.presentationWindow.focus()
