@@ -81,7 +81,6 @@ export default function Bible() {
   }
 
   const handleVerseClick = (verse) => {
-    console.log(verse.verseIndex)
     selectVerse(selectedVersionKey, selectedBook, selectedChapter, verse.verseIndex)
   }
 

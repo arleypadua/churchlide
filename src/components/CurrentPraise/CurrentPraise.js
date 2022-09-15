@@ -5,19 +5,26 @@ import './CurrentPraise.css'
 
 export default function CurrentPraise() {
   const [currentPraise, setCurrentPraise] = useState()
-  const { praiseQueueReducer: [praiseQueue, dispatchPraiseQueue] } = useAppContext()
+  const {
+    appReducer: [app, dispatcheApp],
+    praiseQueueReducer: [praiseQueue, dispatchPraiseQueue]
+  } = useAppContext()
   const { collection, praise: { title, content }, selectedSlideIndex } = praiseQueue?.current ?? { praise: {} }
 
   useEffect(() => {
     if (title && content) {
+      const praise = app.loadedCollections
+        .find(c => c.name === collection)?.songs
+        .find(s => s.title.includes(title))
+
       setCurrentPraise({
         collection,
-        title,
-        content,
+        title: praise.title,
+        content: praise.content,
         selectedSlideIndex
       })
     }
-  }, [collection, title, content, selectedSlideIndex])
+  }, [app.loadedCollections, collection, title, content, selectedSlideIndex])
 
   return currentPraise && (
     <>

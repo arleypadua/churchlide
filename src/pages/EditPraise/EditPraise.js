@@ -20,7 +20,7 @@ export default function AddPraise() {
 
   useEffect(() => {
     const editDisabledEvaluated = editingPraiseTitle.length === 0
-      && editingPraiseContent.length === 0
+      || editingPraiseContent.length === 0
     setEditDisabled(editDisabledEvaluated)
   }, [editingPraiseTitle, editingPraiseContent])
 

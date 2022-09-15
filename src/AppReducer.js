@@ -1,6 +1,5 @@
 import collections from './data/collections'
 import executeAsync from './helpers/executeAsync'
-import { COLLECTIONS_CHANGED, publishMessage, SETTINGS_CHANGED } from './pubsub/eventPublisher'
 import collectionsRepository from './repositories/collectionsRepository'
 import settingsRepository from './repositories/settingsRepository'
 
@@ -107,7 +106,6 @@ export function appReducer(state, action) {
         }
       }
       settingsRepository.persistSettings(newSettings)
-      publishMessage(SETTINGS_CHANGED)
       return {
         ...state,
         settings: newSettings
@@ -129,7 +127,6 @@ export function appReducer(state, action) {
 
         executeAsync(() => {
           collectionsRepository.persistCollections(mutatedCollections)
-          publishMessage(COLLECTIONS_CHANGED)
         })
 
         return {
@@ -144,7 +141,6 @@ export function appReducer(state, action) {
 
         executeAsync(() => {
           collectionsRepository.persistCollections(mutatedCollections)
-          publishMessage(COLLECTIONS_CHANGED)
         })
 
         return {
@@ -180,7 +176,6 @@ export function appReducer(state, action) {
 
       executeAsync(() => {
         collectionsRepository.persistCollections(mutatedCollections)
-        publishMessage(COLLECTIONS_CHANGED)
       })
 
       return {
@@ -212,7 +207,6 @@ export function appReducer(state, action) {
 
       executeAsync(() => {
         collectionsRepository.persistCollections(mutatedCollections)
-        publishMessage(COLLECTIONS_CHANGED)
       })
 
       return {

@@ -18,8 +18,8 @@ export default function AddPraise() {
 
   useEffect(() => {
     const addDisabledEvaluated = collectionName.length === 0
-      && praiseTitle.length === 0
-      && praiseContent.length === 0
+      || praiseTitle.length === 0
+      || praiseContent.length === 0
     setAddDisabled(addDisabledEvaluated)
   }, [collectionName, praiseTitle, praiseContent])
 

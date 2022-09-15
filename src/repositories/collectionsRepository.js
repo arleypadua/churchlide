@@ -1,10 +1,12 @@
 import { appInitialState } from "../AppReducer"
+import { COLLECTIONS_CHANGED, publishMessage } from "../pubsub/eventPublisher"
 
 const COLLECTIONS_KEY = 'churchlide.collections'
 
 const collectionsRepository = {
-  persistCollections: (collections) => {
+  persistCollections: (collections, publishEvent = true) => {
     localStorage.setItem(COLLECTIONS_KEY, JSON.stringify(collections ?? appInitialState.loadedCollections))
+    if (publishEvent) publishMessage(COLLECTIONS_CHANGED)
   },
 
   getCollections: () => {

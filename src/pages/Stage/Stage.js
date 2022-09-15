@@ -3,14 +3,13 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import BibleSlideShow from '../../components/BibleSlideShow/BibleSlideShow'
 import PraiseSlideShow from '../../components/PraiseSlideShow/PraiseSlideShow'
 import EmptyStateSlide from '../../components/EmptyStateSlide/EmptyStateSlide'
-import { cleanupListener, COLLECTIONS_CHANGED, NAVIGATE_ACTION, onMessage, SETTINGS_CHANGED } from '../../pubsub/eventPublisher'
+import { cleanupListener, NAVIGATE_ACTION, onMessage } from '../../pubsub/eventPublisher'
 import togglePresentationTheme from '../../helpers/togglePresentationTheme'
 import { useAppContext } from '../../AppContext'
-import { loadCollections, loadSettings } from '../../AppReducer'
 
 function PraiseStage() {
   const { collectionName, praiseName, slideIndex } = useParams()
-  const { appReducer: [app, dispatchApp] } = useAppContext()
+  const { appReducer: [app] } = useAppContext()
   const [praise, setPraise] = useState(undefined)
 
   useEffect(() => {
@@ -18,10 +17,8 @@ function PraiseStage() {
       .find(c => c.name === collectionName)?.songs
       .find(s => s.title.includes(praiseName))
 
-    console.log(praise)
-
     setPraise(praise)
-  }, [collectionName, praiseName])
+  }, [app.loadedCollections, collectionName, praiseName])
 
   return (
     <>
@@ -39,19 +36,13 @@ export default function Stage() {
 
   const navigate = useNavigate()
   
-  const { appReducer: [app, dispatchApp] } = useAppContext()
+  const { appReducer: [app] } = useAppContext()
   const { settings: { presentationBackground: { color1, color2, color3 } } } = app
 
   const handleEvent = (event) => {
     const { type, payload } = event.data
     if (type === NAVIGATE_ACTION) {
       navigate(payload)
-    }
-    if (type === SETTINGS_CHANGED) {
-      dispatchApp(loadSettings())
-    }
-    if (type === COLLECTIONS_CHANGED) {
-      dispatchApp(loadCollections())
     }
   }
 

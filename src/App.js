@@ -14,6 +14,7 @@ import Settings from "./pages/Settings/Settings";
 import AppContext from "./AppContext";
 import { appInitialState, appReducer, loadSettings, loadCollections } from "./AppReducer";
 import { praiseQueueInitialState, praiseQueueReducer } from "./components/PraiseQueue/PraiseQueueReducer";
+import { cleanupListener, COLLECTIONS_CHANGED, onMessage, SETTINGS_CHANGED } from './pubsub/eventPublisher';
 
 function App() {
   const location = useLocation()
@@ -21,13 +22,22 @@ function App() {
     appReducer: useReducer(appReducer, appInitialState),
     praiseQueueReducer: useReducer(praiseQueueReducer, praiseQueueInitialState)
   }
+  const [_, dispatchApp] = praiseQueueProviderState.appReducer
 
   const shouldShowSideBar = () => !location.pathname.startsWith("/stage")
 
+  const handleMessages = (event) => {
+    const { type } = event.data
+    if (type === SETTINGS_CHANGED) dispatchApp(loadSettings())
+    if (type === COLLECTIONS_CHANGED) dispatchApp(loadCollections())
+  }
+
   useEffect(() => {
-    const [_, dispatchApp] = praiseQueueProviderState.appReducer
     dispatchApp(loadSettings())
     dispatchApp(loadCollections())
+
+    onMessage(handleMessages)
+    return () => cleanupListener(handleMessages)
   }, [])
 
   return (

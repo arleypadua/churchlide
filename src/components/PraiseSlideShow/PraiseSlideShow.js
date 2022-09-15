@@ -58,7 +58,6 @@ function PraiseSlideShow({ praise, slideIndex = 0 }) {
     }
   }
 
-  console.log(currentPage)
   return (
     <div ref={slideFocusRef} tabIndex={-1} onKeyDown={handleKeyDown} className="slide_show">
       <h1>{title}</h1>

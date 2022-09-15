@@ -58,6 +58,11 @@ body {
   vertical-align: middle;
 }
 
+.button:disabled {
+  background-color: #f7f7f7;
+  color: #92999e;
+}
+
 button.button {
   font-family : inherit;
   font-size: 0.8em;
